@@ -14,3 +14,6 @@ int Item_mag::get_durabilidad() {return durabilidad;}
 
 // Getter del nivel
 int Item_mag::get_nivel() {return nivel;}
+
+// Getter de la duracion
+int Item_mag::get_duracion() {return duracion;}

@@ -1,29 +1,30 @@
-#ifndef ITEMS
-#define ITEMS
+#ifndef ARMAS_COMB
+#define ARMAS_COMB
 #include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_2/Armas/armas.h"
 #include <iostream>
 #include <string>
 
-class Item_mag : public Arma{
+class Armas_comb : public Arma {
 protected:
-    const std::string tipo = "Item Magico";
+    const std::string tipo = "Armas de Combate";
     int ataque;
-    int energia;
+    int velocidad;
     int durabilidad;
     int nivel;
-    int duracion;
+    int peso;
+    int alcance;
 
 public:
-    // Destructor.
-    virtual ~Item_mag() = default;
-
+    virtual ~Armas_comb() = default;
+    
     // Getters.
     const std::string get_tipo() override;
     int get_ataque() override;
-    int get_energia();
+    int get_velocidad();
     int get_durabilidad() override;
     int get_nivel() override;
-    int get_duracion();
+    int get_peso();
+    int get_alcance();
 
     // Getter Virtual para subtipo
     virtual const std::string get_subtipo() = 0;
