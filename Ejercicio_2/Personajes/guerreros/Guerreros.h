@@ -1,21 +1,21 @@
-#ifndef MAGOS
-#define MAGOS
+#ifndef GUERREROS
+#define GUERREROS
 
 #include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_2/Personajes/personajes.h"
 #include <iostream>
 #include <string>
 
-class Magos : public Personaje{
+class Guerreros : public Personaje{
 protected: 
-    const std::string tipo = "Mago";
+    const std::string tipo = "Guerreros";
     int vida;
     int defensa_fisica;
     int defensa_magica;
-    int mana;
+    int stamina;
     int nivel;
 
 public:
-    virtual ~Magos() = default; 
+    virtual ~Guerreros() = default;
 
     // Getters para los atributos.
     const std::string get_tipo() override;
@@ -29,18 +29,16 @@ public:
     void set_defensa_fisica(int defensa_fisica) override;
     void set_defensa_magica(int defensa_magica) override;
     void set_nivel(int nivel) override;
-    
+
     // Getters Virtuales
     virtual const std::string get_subtipo() = 0;
-    virtual int get_mana() = 0;
-    virtual void set_mana(int mana) = 0;
+    virtual int get_stamina() = 0;
+    virtual void set_stamina(int stamina) = 0;
 
     // Movimientos.
     virtual void golpe_fuerte() = 0;
     virtual void golpe_rapido() = 0;
     virtual void defensa_golpe() = 0;
-
-
 };
 
 #endif
