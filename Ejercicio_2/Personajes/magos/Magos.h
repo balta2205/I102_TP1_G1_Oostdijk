@@ -34,7 +34,6 @@ public:
     void set_nivel(int nivel) override;
     
     // Getters Virtuales
-    virtual const std::string get_subtipo() = 0;
     virtual int get_mana() = 0;
     virtual void set_mana(int mana) = 0;
 

@@ -1,14 +1,5 @@
 #include "Factory.h"
 
-int numero_aleatorio(int min, int max);
-std::shared_ptr<Arma> random_arma_mago();
-std::shared_ptr<Arma> random_arma_guerrero();
-std::shared_ptr<Personaje> random_personaje_mago(std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas);
-std::shared_ptr<Personaje> random_personaje_guerrero(std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas);
-void crear_personajes(std::vector<std::shared_ptr<Personaje>>& guerreros, int cant_guerreros, std::vector<std::shared_ptr<Personaje>>& magos, int cant_magos);
-void mostrar_personaje(const std::shared_ptr<Personaje>& personaje);
-void imprimir_personajes(const std::vector<std::shared_ptr<Personaje>>& guerreros, const std::vector<std::shared_ptr<Personaje>>& magos);
-
 int main(){
     srand(time(0));
 
@@ -18,7 +9,9 @@ int main(){
     int cant_guerreros = numero_aleatorio(3, 7);
     int cant_magos = numero_aleatorio(3, 7);
 
+    std::cout << "---------------------------------------------" << std::endl;
     std::cout << "Se crearon " << cant_guerreros << " guerreros y " << cant_magos << " magos." << std::endl;
+    std::cout << "---------------------------------------------" << std::endl;
 
     crear_personajes(guerreros, cant_guerreros, magos, cant_magos);
 
@@ -103,33 +96,33 @@ void mostrar_personaje(const std::shared_ptr<Personaje>& personaje){
         return;
     }
 
-    std::cout << "-------------- " << personaje->get_tipo() << " --------------" << std::endl;
-    std::cout << "Vida: " << personaje->get_vida() << std::endl;
-    std::cout << "Defensa Fisica: " << personaje->get_defensa_fisica() << std::endl;
-    std::cout << "Defensa Mágica: " << personaje->get_defensa_magica() << std::endl;
+    std::cout << personaje->get_tipo() << ": " << personaje->get_subtipo() << std::endl;
+    std::cout << "   Vida: " << personaje->get_vida() << std::endl;
+    std::cout << "   Defensa Fisica: " << personaje->get_defensa_fisica() << std::endl;
+    std::cout << "   Defensa Mágica: " << personaje->get_defensa_magica() << std::endl;
 
-    std::cout << "Armas:" << std::endl;
+    std::cout << "   Armas:" << std::endl;
     auto armas = personaje->get_armas();
     
-    std::cout << "    Arma 1: ";
+    std::cout << "       Arma 1: ";
     if (armas.first) {
         std::cout << armas.first->get_subtipo() << std::endl;
-        std::cout << "\tDaño: " << armas.first->get_ataque() << std::endl;
-        std::cout << "\tDurabilidad: " << armas.first->get_durabilidad() << std::endl;
+        std::cout << "\t   Daño: " << armas.first->get_ataque() << std::endl;
+        std::cout << "\t   Durabilidad: " << armas.first->get_durabilidad() << std::endl;
     } else {
         std::cout << "No hay" << std::endl;
     }
     
-    std::cout << "\n    Arma 2: ";
+    std::cout << "\n       Arma 2: ";
     if (armas.second) {
         std::cout << armas.second->get_subtipo() << std::endl;
-        std::cout << "\tDaño: " << armas.second->get_ataque() << std::endl;
-        std::cout << "\tDurabilidad: " << armas.second->get_durabilidad() << std::endl;
+        std::cout << "\t   Daño: " << armas.second->get_ataque() << std::endl;
+        std::cout << "\t   Durabilidad: " << armas.second->get_durabilidad() << std::endl;
     } else {
         std::cout << "No hay" << std::endl;
     }
     
-    std::cout << "----------------------------------\n" << std::endl;
+    std::cout << "---------------------------------------------" << std::endl;
 }
 
 void imprimir_personajes(const std::vector<std::shared_ptr<Personaje>>& guerreros, const std::vector<std::shared_ptr<Personaje>>& magos) {

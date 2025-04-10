@@ -22,6 +22,7 @@ public:
 
     // Getters para los atributos.
     virtual const std::string get_tipo() = 0;
+    virtual const std::string get_subtipo() = 0;
     virtual int get_vida() = 0;
     virtual int get_defensa_fisica() = 0;
     virtual int get_defensa_magica() = 0;
