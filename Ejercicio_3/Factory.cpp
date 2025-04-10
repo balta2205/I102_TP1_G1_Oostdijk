@@ -12,15 +12,15 @@ std::shared_ptr<Arma> PersonajeFactory::crearArma(Armas_lista arma){
 
         case Armas_lista::AMULETO : return std::make_shared<Amuletos>(70, 8, 100, 10);
 
-        case Armas_lista::HACHA_S : return std::make_shared<Hacha_simple>(80, 7, 100, 18);
+        case Armas_lista::HACHA_S : return std::make_shared<Hacha_simple>(80, 7, 100, 18, 13, 5);
 
-        case Armas_lista::HACHA_D : return std::make_shared<Hacha_doble>(90, 10, 100, 25);
+        case Armas_lista::HACHA_D : return std::make_shared<Hacha_doble>(90, 10, 100, 25, 15, 5);
 
-        case Armas_lista::ESPADA : return std::make_shared<Espada>(85, 8, 100, 20);
+        case Armas_lista::ESPADA : return std::make_shared<Espada>(85, 8, 100, 20, 5, 7);
 
-        case Armas_lista::LANZA : return std::make_shared<Lanza>(75, 6, 100, 15);
+        case Armas_lista::LANZA : return std::make_shared<Lanza>(75, 6, 100, 15, 15, 10);
 
-        case Armas_lista::GARROTE : return std::make_shared<Garrote>(80, 7, 100, 18);
+        case Armas_lista::GARROTE : return std::make_shared<Garrote>(80, 7, 100, 18, 10, 5);
 
         default: return nullptr;
     }

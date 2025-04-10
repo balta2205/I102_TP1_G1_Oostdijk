@@ -1,5 +1,31 @@
 #include "Factory.h"
 
+int numero_aleatorio(int min, int max);
+std::shared_ptr<Arma> random_arma_mago();
+std::shared_ptr<Arma> random_arma_guerrero();
+std::shared_ptr<Personaje> random_personaje_mago(std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas);
+std::shared_ptr<Personaje> random_personaje_guerrero(std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas);
+void crear_personajes(std::vector<std::shared_ptr<Personaje>>& guerreros, int cant_guerreros, std::vector<std::shared_ptr<Personaje>>& magos, int cant_magos);
+void mostrar_personaje(const std::shared_ptr<Personaje>& personaje);
+void imprimir_personajes(const std::vector<std::shared_ptr<Personaje>>& guerreros, const std::vector<std::shared_ptr<Personaje>>& magos);
+
+int main(){
+    srand(time(0));
+
+    std::vector<std::shared_ptr<Personaje>> guerreros;
+    std::vector<std::shared_ptr<Personaje>> magos;   
+
+    int cant_guerreros = numero_aleatorio(3, 7);
+    int cant_magos = numero_aleatorio(3, 7);
+
+    std::cout << "Se crearon " << cant_guerreros << " guerreros y " << cant_magos << " magos." << std::endl;
+
+    crear_personajes(guerreros, cant_guerreros, magos, cant_magos);
+
+    imprimir_personajes(guerreros, magos);
+
+}
+
 int numero_aleatorio(int min, int max) {
     return (rand() % (max - min + 1)) + min;
 }
@@ -50,19 +76,21 @@ std::shared_ptr<Personaje> random_personaje_guerrero(std::pair<std::shared_ptr<A
     }
 }
 
-
-void crear_personajes(std::vector<std::shared_ptr<Personaje>> guerreros, int cant_guerreros, std::vector<std::shared_ptr<Personaje>> magos, int cant_magos) {
+void crear_personajes(std::vector<std::shared_ptr<Personaje>>& guerreros, int cant_guerreros, std::vector<std::shared_ptr<Personaje>>& magos, int cant_magos) {
     for (int i = 0; i < cant_guerreros; ++i) {
-        std::shared_ptr<Arma> arma1 = random_arma_guerrero();
-        std::shared_ptr<Arma> arma2 = random_arma_guerrero();
+        int cant_armas = numero_aleatorio(0, 2);
+        std::shared_ptr<Arma> arma1 = (cant_armas > 0) ? random_arma_guerrero() : nullptr;
+        std::shared_ptr<Arma> arma2 = (cant_armas > 1) ? random_arma_guerrero() : nullptr;
+
         std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas = std::make_pair(arma1, arma2);
         std::shared_ptr<Personaje> guerrero = random_personaje_guerrero(armas);
         if(guerrero) guerreros.push_back(guerrero);
     }
 
     for (int i = 0; i < cant_magos; ++i) {
-        std::shared_ptr<Arma> arma1 = random_arma_mago();
-        std::shared_ptr<Arma> arma2 = random_arma_mago();
+        int cant_armas = numero_aleatorio(0, 2);
+        std::shared_ptr<Arma> arma1 = (cant_armas > 0) ? random_arma_mago() : nullptr;
+        std::shared_ptr<Arma> arma2 = (cant_armas > 1) ? random_arma_mago() : nullptr;
         std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas = std::make_pair(arma1, arma2);
         std::shared_ptr<Personaje> mago = random_personaje_mago(armas);
         if(mago) magos.push_back(mago);
@@ -83,28 +111,26 @@ void mostrar_personaje(const std::shared_ptr<Personaje>& personaje){
     std::cout << "Armas:" << std::endl;
     auto armas = personaje->get_armas();
     
-    std::cout << "\tArma 1: ";
+    std::cout << "    Arma 1: ";
     if (armas.first) {
-        std::cout << armas.first->get_tipo() << std::endl;
+        std::cout << armas.first->get_subtipo() << std::endl;
         std::cout << "\tDaño: " << armas.first->get_ataque() << std::endl;
         std::cout << "\tDurabilidad: " << armas.first->get_durabilidad() << std::endl;
     } else {
         std::cout << "No hay" << std::endl;
     }
     
-    std::cout << "  Secundaria: ";
+    std::cout << "\n    Arma 2: ";
     if (armas.second) {
-        std::cout << armas.second->get_tipo() << std::endl;
+        std::cout << armas.second->get_subtipo() << std::endl;
         std::cout << "\tDaño: " << armas.second->get_ataque() << std::endl;
         std::cout << "\tDurabilidad: " << armas.second->get_durabilidad() << std::endl;
     } else {
         std::cout << "No hay" << std::endl;
     }
     
-    std::cout << "-------------------------------------" << std::endl;
+    std::cout << "----------------------------------\n" << std::endl;
 }
-
-
 
 void imprimir_personajes(const std::vector<std::shared_ptr<Personaje>>& guerreros, const std::vector<std::shared_ptr<Personaje>>& magos) {
     for (const auto& guerrero : guerreros) {
@@ -113,20 +139,4 @@ void imprimir_personajes(const std::vector<std::shared_ptr<Personaje>>& guerrero
     for (const auto& mago : magos) {
         mostrar_personaje(mago);
     }
-}
-
-int main(){
-    srand(time(0));
-
-    std::vector<std::shared_ptr<Personaje>> guerreros;
-    std::vector<std::shared_ptr<Personaje>> magos;   
-
-    int cant_guerreros = numero_aleatorio(3, 7);
-    int cant_magos = numero_aleatorio(3, 7);
-
-    std::cout << "Se crearon " << cant_guerreros << " guerreros y " << cant_magos << " magos." << std::endl;
-
-    crear_personajes(guerreros, cant_guerreros, magos, cant_magos);
-
-    imprimir_personajes(guerreros, magos);
 }

@@ -10,6 +10,7 @@ int Guerreros::get_vida(){return vida;}
 int Guerreros::get_defensa_fisica(){return defensa_fisica;}
 int Guerreros::get_defensa_magica(){return defensa_magica;}
 int Guerreros::get_nivel(){return nivel;}
+std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> Guerreros::get_armas(){return armas;}
 
 // Setters para los atributos.
 void Guerreros::set_vida(int vida){this->vida = vida;}

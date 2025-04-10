@@ -7,7 +7,7 @@
 
 class Guerreros : public Personaje{
 protected: 
-    const std::string tipo = "Guerreros";
+    const std::string tipo = "Guerrero";
     int vida;
     int defensa_fisica;
     int defensa_magica;

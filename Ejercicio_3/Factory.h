@@ -37,9 +37,7 @@ enum class Personas {HECHICERO, CONJURADOR, BRUJO, NIGROMANTE, BARBARO, PALADIN,
 
 #ifndef ARMAS_LISTA
 #define ARMAS_LISTA
-
 enum class Armas_lista {null, BASTON, LIBROHECHIZO, POCION, AMULETO, HACHA_S, HACHA_D, ESPADA, LANZA, GARROTE};
-
 #endif 
 
 class PersonajeFactory {
