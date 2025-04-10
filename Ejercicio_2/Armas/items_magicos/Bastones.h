@@ -1,5 +1,5 @@
-#ifndef BASTONES
-#define BASTONES
+#ifndef BASTON_H
+#define BASTON_H
 
 #include "Items.h"
 

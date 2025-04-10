@@ -1,16 +1,11 @@
 #include "Caballeros.h"
 
-Caballero::Caballero(int vida, int defensa_fisica, int defensa_magica, int stamina, int nivel){
-    this->vida = vida;
-    this->defensa_fisica = defensa_fisica;
-    this->defensa_magica = defensa_magica;
-    this->stamina = stamina;
-    this->nivel = nivel;
-}
+Caballero::Caballero(int vida, int defensa_fisica, int defensa_magica, int stamina, int nivel, std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas)
+: Guerreros(vida, defensa_fisica, defensa_magica, stamina, nivel, armas) {}
 
-const std::string Caballero::get_subtipo(){return subtipo;}
+const std::string Caballero::get_subtipo(){return this->subtipo;}
 
-int Caballero::get_stamina(){return stamina;}
+int Caballero::get_stamina(){return this->stamina;}
 
 void Caballero::set_stamina(int stamina){this->stamina = stamina;}
 

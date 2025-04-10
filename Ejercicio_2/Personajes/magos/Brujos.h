@@ -1,5 +1,5 @@
-#ifndef BRUJO
-#define BRUJO
+#ifndef BRUJO_H
+#define BRUJO_H
 
 #include "Magos.h"
 
@@ -8,7 +8,7 @@ private:
     const std::string subtipo = "Brujo";
     const std::string arma_especial = "Pocion";
 public:
-    Brujo(int vida, int defensa_fisica, int defensa_magica, int mana, int nivel);
+    Brujo(int vida, int defensa_fisica, int defensa_magica, int mana, int nivel, std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas);
 
     const std::string get_subtipo() override;
     int get_mana() override;

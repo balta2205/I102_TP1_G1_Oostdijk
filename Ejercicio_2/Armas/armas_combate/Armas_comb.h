@@ -1,5 +1,6 @@
-#ifndef ARMAS_COMB
-#define ARMAS_COMB
+#ifndef ARMAS_COMB_H
+#define ARMAS_COMB_H
+
 #include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_2/Armas/armas.h"
 #include <iostream>
 #include <string>

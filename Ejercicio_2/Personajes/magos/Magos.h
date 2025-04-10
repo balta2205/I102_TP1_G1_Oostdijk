@@ -1,5 +1,5 @@
-#ifndef MAGOS
-#define MAGOS
+#ifndef MAGOS_H
+#define MAGOS_H
 
 #include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_2/Personajes/personajes.h"
 #include <iostream>
@@ -13,8 +13,10 @@ protected:
     int defensa_magica;
     int mana;
     int nivel;
+    std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas;
 
 public:
+    Magos(int vida, int defensa_fisica, int defensa_magica, int mana, int nivel, std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas);
     virtual ~Magos() = default; 
 
     // Getters para los atributos.
@@ -23,6 +25,7 @@ public:
     int get_defensa_fisica() override;
     int get_defensa_magica() override;
     int get_nivel() override;
+    std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> get_armas() override;
 
     // Setters para los atributos.
     void set_vida(int vida) override;

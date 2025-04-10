@@ -1,5 +1,9 @@
 #include "Guerreros.h"
 
+// Constructor de la clase Guerreros.
+Guerreros::Guerreros(int vida, int defensa_fisica, int defensa_magica, int stamina, int nivel, std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas)
+    : vida(vida), defensa_fisica(defensa_fisica), defensa_magica(defensa_magica), stamina(stamina), nivel(nivel), armas(armas) {}
+
 // Getters para los atributos.
 const std::string Guerreros::get_tipo(){return tipo;}
 int Guerreros::get_vida(){return vida;}

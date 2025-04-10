@@ -1,5 +1,5 @@
-#ifndef ESPADA
-#define ESPADA
+#ifndef ESPADA_H
+#define ESPADA_H
 
 #include "Armas_comb.h"
 

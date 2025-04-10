@@ -1,5 +1,5 @@
-#ifndef AMULETOS
-#define AMULETOS
+#ifndef AMULETO_H
+#define AMULETO_H
 
 #include "Items.h"
 

@@ -1,5 +1,5 @@
-#ifndef GARROTE
-#define GARROTE
+#ifndef GARROTE_H
+#define GARROTE_H
 
 #include "Armas_comb.h"
 

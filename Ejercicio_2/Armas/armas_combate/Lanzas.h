@@ -1,5 +1,5 @@
-#ifndef LANZA
-#define LANZA
+#ifndef LANZA_H
+#define LANZA_H
 
 #include "Armas_comb.h"
 

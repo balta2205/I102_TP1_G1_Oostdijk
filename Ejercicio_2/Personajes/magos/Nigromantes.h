@@ -1,5 +1,5 @@
-#ifndef NIGROMANTE
-#define NIGROMANTE
+#ifndef NIGROMANTE_H
+#define NIGROMANTE_H
 
 #include "Magos.h"
 
@@ -9,7 +9,7 @@ private:
     const std::string arma_especial = "Amuleto";
 
 public: 
-    Nigromante(int vida, int defensa_fisica, int defensa_magica, int mana, int nivel);
+    Nigromante(int vida, int defensa_fisica, int defensa_magica, int mana, int nivel, std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas);
 
     const std::string get_subtipo() override;
     int get_mana() override;

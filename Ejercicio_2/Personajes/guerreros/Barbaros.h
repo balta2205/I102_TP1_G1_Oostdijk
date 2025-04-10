@@ -1,5 +1,5 @@
-#ifndef BARBARO
-#define BARBARO
+#ifndef BARBARO_H
+#define BARBARO_H
 
 #include "Guerreros.h"
 
@@ -9,7 +9,7 @@ private:
     const std::string arma_especial = "Hacha Simple";
 
 public:
-    Barbaro(int vida, int defensa_fisica, int defensa_magica, int stamina, int nivel);
+    Barbaro(int vida, int defensa_fisica, int defensa_magica, int stamina, int nivel, std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas);
 
     const std::string get_subtipo() override;
     int get_stamina() override;

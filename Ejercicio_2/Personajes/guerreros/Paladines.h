@@ -1,5 +1,5 @@
-#ifndef PALADIN
-#define PALADIN
+#ifndef PALADIN_H
+#define PALADIN_H
 
 #include "Guerreros.h"
 
@@ -9,7 +9,7 @@ private:
     const std::string arma_especial = "Hacha Doble";
 
 public:
-    Paladin(int vida, int defensa_fisica, int defensa_magica, int stamina, int nivel);
+    Paladin(int vida, int defensa_fisica, int defensa_magica, int stamina, int nivel, std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas);
 
     const std::string get_subtipo() override;
     int get_stamina() override;

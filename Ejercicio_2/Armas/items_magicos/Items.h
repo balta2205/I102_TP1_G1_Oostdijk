@@ -1,5 +1,6 @@
-#ifndef ITEMS
-#define ITEMS
+#ifndef ITEMS_H
+#define ITEMS_H
+
 #include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_2/Armas/armas.h"
 #include <iostream>
 #include <string>
@@ -20,9 +21,9 @@ public:
     // Getters.
     const std::string get_tipo() override;
     int get_ataque() override;
-    int get_energia();
     int get_durabilidad() override;
     int get_nivel() override;
+    int get_energia();
     int get_duracion();
 
     // Getter Virtual para subtipo

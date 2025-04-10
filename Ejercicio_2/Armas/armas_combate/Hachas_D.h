@@ -1,5 +1,5 @@
-#ifndef HACHAS_D
-#define HACHAS_D
+#ifndef HACHA_D_H
+#define HACHA_D_H
 
 #include "Armas_comb.h"
 

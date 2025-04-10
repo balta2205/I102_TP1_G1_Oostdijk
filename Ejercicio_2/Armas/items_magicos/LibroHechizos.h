@@ -1,5 +1,5 @@
-#ifndef LIBROSDEHECHIZOS
-#define LIBROSDEHECHIZOS
+#ifndef LIBRO_HECHIZO_H
+#define LIBRO_HECHIZO_H
 
 #include "Items.h" 
 #include <vector>

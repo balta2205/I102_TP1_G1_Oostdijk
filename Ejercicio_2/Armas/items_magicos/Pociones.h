@@ -1,5 +1,5 @@
-#ifndef POCION
-#define POCION
+#ifndef POCION_H
+#define POCION_H
 
 #include "Items.h"
 #include <vector>

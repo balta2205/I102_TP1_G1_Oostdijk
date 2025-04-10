@@ -1,16 +1,11 @@
 #include "Conjuradores.h"
 
-Conjurador::Conjurador(int vida, int defensa_fisica, int defensa_magica,  int mana, int nivel){
-    this->vida = vida;
-    this->defensa_fisica = defensa_fisica;
-    this->defensa_magica = defensa_magica;
-    this->mana = mana;
-    this->nivel = nivel;
-}
+Conjurador::Conjurador(int vida, int defensa_fisica, int defensa_magica,  int mana, int nivel, std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas): 
+    Magos(vida, defensa_fisica, defensa_magica, mana, nivel, armas){}
 
-const std::string Conjurador::get_subtipo(){return subtipo;}
+const std::string Conjurador::get_subtipo(){return this->subtipo;}
 
-int Conjurador::get_mana(){return mana;}
+int Conjurador::get_mana(){return this->mana;}
 
 void Conjurador::set_mana(int mana) {this->mana = mana;}
 
