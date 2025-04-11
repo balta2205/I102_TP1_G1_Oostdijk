@@ -9,6 +9,8 @@ int Gladiador::get_stamina(){return this->stamina;}
 
 void Gladiador::set_stamina(int stamina){this->stamina = stamina;}
 
+const std::string Gladiador::get_arma_especial(){return this->arma_especial;}
+
 void Gladiador::golpe_fuerte(){
     std::cout << "Eligio golpe fuerte" << std::endl; 
 }

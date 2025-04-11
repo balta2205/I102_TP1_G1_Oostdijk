@@ -9,6 +9,8 @@ int Hechicero::get_mana(){return this->mana;}
 
 void Hechicero::set_mana(int mana) {this->mana = mana;}
 
+const std::string Hechicero::get_arma_especial(){return this->arma_especial;}
+
 void Hechicero::golpe_fuerte(){
     std::cout << "Eligio golpe fuerte" << std::endl; 
 }

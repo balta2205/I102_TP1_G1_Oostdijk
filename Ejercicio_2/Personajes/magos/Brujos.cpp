@@ -9,6 +9,8 @@ int Brujo::get_mana(){return this->mana;}
 
 void Brujo::set_mana(int mana) {this->mana = mana;}
 
+const std::string Brujo::get_arma_especial(){return this->arma_especial;}
+
 void Brujo::golpe_fuerte(){
     std::cout << "Eligio golpe fuerte" << std::endl; 
 }

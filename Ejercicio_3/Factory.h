@@ -1,3 +1,6 @@
+#ifndef FACTORY_H
+#define FACTORY_H
+
 // Includes Armas de Combate
 #include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_2/Armas/armas_combate/Hachas_S.h"
 #include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_2/Armas/armas_combate/Hachas_D.h"
@@ -33,7 +36,10 @@
 #include <cstdlib>
 #include <ctime>
 
-enum class Personas {HECHICERO, CONJURADOR, BRUJO, NIGROMANTE, BARBARO, PALADIN, CABALLERO, MERCENARIO, GLADIADOR};
+#ifndef PERSONAS
+#define PERSONAS
+enum class Personas {null, HECHICERO, CONJURADOR, BRUJO, NIGROMANTE, BARBARO, PALADIN, CABALLERO, MERCENARIO, GLADIADOR};
+#endif
 
 #ifndef ARMAS_LISTA
 #define ARMAS_LISTA
@@ -47,6 +53,7 @@ public:
     static std::shared_ptr<Personaje> crearPersonaje(Personas personaje);
     static std::shared_ptr<Personaje> crearPersonajeArmado(Personas personaje, std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas);
 };
+#endif
 
 // Declaraciones de funciones del main.cpp
 int numero_aleatorio(int min, int max);

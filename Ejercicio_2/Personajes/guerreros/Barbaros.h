@@ -14,9 +14,11 @@ public:
     const std::string get_subtipo() override;
     int get_stamina() override;
     void set_stamina(int stamina) override;
+    int get_mana() override{ return 0; }
     void golpe_fuerte() override;
     void golpe_rapido() override;
     void defensa_golpe() override;
+    const std::string get_arma_especial() override;
 };
 
 #endif

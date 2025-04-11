@@ -9,6 +9,8 @@ int Paladin::get_stamina(){return this->stamina;}
 
 void Paladin::set_stamina(int stamina){this->stamina = stamina;}
 
+const std::string Paladin::get_arma_especial(){return this->arma_especial;}
+
 void Paladin::golpe_fuerte(){
     std::cout << "Eligio golpe fuerte" << std::endl; 
 }

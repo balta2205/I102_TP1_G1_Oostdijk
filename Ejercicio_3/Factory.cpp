@@ -29,6 +29,8 @@ std::shared_ptr<Arma> PersonajeFactory::crearArma(Armas_lista arma){
 std::shared_ptr<Personaje> PersonajeFactory::crearPersonajeArmado(Personas personaje, std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas) {
     
     switch (personaje){
+        case Personas::null : return nullptr;
+
         case Personas::HECHICERO : return std::make_shared<Hechicero>(250, 50, 150, 100, 10, armas);
 
         case Personas::CONJURADOR : return std::make_shared<Conjurador>(250, 50, 150, 100, 10, armas);
@@ -51,6 +53,6 @@ std::shared_ptr<Personaje> PersonajeFactory::crearPersonajeArmado(Personas perso
     }
 };
 
-std::shared_ptr<Personaje> crearPersonaje(Personas personaje) {
+std::shared_ptr<Personaje> PersonajeFactory::crearPersonaje(Personas personaje) {
     return PersonajeFactory::crearPersonajeArmado(personaje, std::make_pair(nullptr, nullptr));
 }

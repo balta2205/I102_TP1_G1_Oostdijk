@@ -3,13 +3,13 @@ CXX = g++
 CXXFLAGS = -std=c++17 -Wall -g
 
 # Buscar todos los .cpp en subdirectorios
-SRCS := $(shell find Ejercicio_2 Ejercicio_3 -name "*.cpp")
+SRCS := $(shell find Ejercicio_2 Ejercicio_3 Ejercicio_4 -name "*.cpp")
 
 # Ejecutable
-TARGET = juego
+TARGET = ej4
 
 # Incluir todos los directorios con headers
-INCLUDES := $(shell find Ejercicio_2 Ejercicio_3 -type d -printf "-I%s ")
+INCLUDES := $(shell find Ejercicio_2 Ejercicio_3 Ejercicio_4 -type d -printf "-I%s ")
 
 # Regla principal
 all: $(TARGET)

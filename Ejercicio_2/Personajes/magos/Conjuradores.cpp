@@ -9,6 +9,8 @@ int Conjurador::get_mana(){return this->mana;}
 
 void Conjurador::set_mana(int mana) {this->mana = mana;}
 
+const std::string Conjurador::get_arma_especial(){return this->arma_especial;}
+
 void Conjurador::golpe_fuerte(){
     std::cout << "Eligio golpe fuerte" << std::endl; 
 }

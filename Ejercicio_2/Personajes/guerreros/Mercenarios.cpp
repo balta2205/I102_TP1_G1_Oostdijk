@@ -9,6 +9,8 @@ int Mercenario::get_stamina(){return this->stamina;}
 
 void Mercenario::set_stamina(int stamina){this->stamina = stamina;}
 
+const std::string Mercenario::get_arma_especial(){return this->arma_especial;}
+
 void Mercenario::golpe_fuerte(){
     std::cout << "Eligio golpe fuerte" << std::endl; 
 }

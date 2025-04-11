@@ -9,6 +9,8 @@ int Barbaro::get_stamina(){return this->stamina;}
 
 void Barbaro::set_stamina(int stamina){this->stamina = stamina;}
 
+const std::string Barbaro::get_arma_especial(){return this->arma_especial;}
+
 void Barbaro::golpe_fuerte(){
     std::cout << "Eligio golpe fuerte" << std::endl; 
 }

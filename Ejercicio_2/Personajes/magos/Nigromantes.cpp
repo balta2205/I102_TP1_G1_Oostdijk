@@ -9,6 +9,8 @@ int Nigromante::get_mana(){return this->mana;}
 
 void Nigromante::set_mana(int mana) {this->mana = mana;}
 
+const std::string Nigromante::get_arma_especial(){return this->arma_especial;}
+
 void Nigromante::golpe_fuerte(){
     std::cout << "Eligio golpe fuerte" << std::endl; 
 }

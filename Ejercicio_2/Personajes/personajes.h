@@ -28,6 +28,9 @@ public:
     virtual int get_defensa_magica() = 0;
     virtual int get_nivel() = 0;
     virtual std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> get_armas() = 0;
+    virtual const std::string get_arma_especial() = 0;
+    virtual int get_mana() = 0;
+    virtual int get_stamina() = 0;
 
     // Setters para los atributos.
     virtual void set_vida(int vida) = 0;
