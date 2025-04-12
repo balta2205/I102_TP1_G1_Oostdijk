@@ -1,22 +1,17 @@
 #include "Armas_comb.h"
 
-// Getter del tipo
-const std::string Armas_comb::get_tipo() {return tipo;};
+// Constructor de la clase Armas_comb.
+Armas_comb::Armas_comb(int ataque, int durabilidad, int nivel, int velocidad, int peso, int alcance) {
+    this->ataque = ataque;
+    this->durabilidad = durabilidad;
+    this->nivel = nivel;
+    this->velocidad = velocidad;
+    this->peso = peso;
+    this->alcance = alcance;
+}
 
-// Getter del ataque
-int Armas_comb::get_ataque() {return ataque;};
-
-// Getter de la velocidad
-int Armas_comb::get_velocidad() {return velocidad;};
-
-// Getter de la durabilidad
-int Armas_comb::get_durabilidad() {return durabilidad;};
-
-// Getter del nivel
-int Armas_comb::get_nivel() {return nivel;};
-
-// Getter del peso
-int Armas_comb::get_peso() {return peso;};
-
-// Getter del alcance
-int Armas_comb::get_alcance() {return alcance;};
+// Getters de los atributos.
+const std::string Armas_comb::get_tipo() {return this->tipo;};
+int Armas_comb::get_ataque() {return this->ataque;};
+int Armas_comb::get_durabilidad() {return this->durabilidad;};
+int Armas_comb::get_nivel() {return this->nivel;};

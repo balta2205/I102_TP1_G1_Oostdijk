@@ -1,6 +1,9 @@
 #ifndef FACTORY_H
 #define FACTORY_H
 
+// Include utilities
+#include "../utilities.h"
+
 // Includes Armas de Combate
 #include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_2/Armas/armas_combate/Hachas_S.h"
 #include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_2/Armas/armas_combate/Hachas_D.h"
@@ -26,25 +29,6 @@
 #include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_2/Personajes/magos/Conjuradores.h"
 #include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_2/Personajes/magos/Brujos.h"
 #include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_2/Personajes/magos/Nigromantes.h"
-
-// Includes
-#include <iostream>
-#include <string>
-#include <vector>
-#include <memory>
-#include <random>
-#include <cstdlib>
-#include <ctime>
-
-#ifndef PERSONAS
-#define PERSONAS
-enum class Personas {null, HECHICERO, CONJURADOR, BRUJO, NIGROMANTE, BARBARO, PALADIN, CABALLERO, MERCENARIO, GLADIADOR};
-#endif
-
-#ifndef ARMAS_LISTA
-#define ARMAS_LISTA
-enum class Armas_lista {null, BASTON, LIBROHECHIZO, POCION, AMULETO, HACHA_S, HACHA_D, ESPADA, LANZA, GARROTE};
-#endif 
 
 // Clase PersonajeFactory -> Factory para crear personajes y armas
 class PersonajeFactory {

@@ -4,13 +4,13 @@ std::shared_ptr<Arma> PersonajeFactory::crearArma(Armas_lista arma){
     switch (arma) {
         case Armas_lista::null : return nullptr;
         
-        case Armas_lista::BASTON : return std::make_shared<Baston>(75, 5, 100, 15);
+        case Armas_lista::BASTON : return std::make_shared<Baston>(75, 5, 100, 15, 0);
 
-        case Armas_lista::LIBROHECHIZO : return std::make_shared<Libro_Hechizos>(85, 10, 100, 20);
+        case Armas_lista::LIBROHECHIZO : return std::make_shared<Libro_Hechizos>(85, 10, 100, 20, 5);
 
-        case Armas_lista::POCION : return std::make_shared<Pociones>(60, 5, 100, 15);
+        case Armas_lista::POCION : return std::make_shared<Pociones>(60, 5, 100, 15, 3);
 
-        case Armas_lista::AMULETO : return std::make_shared<Amuletos>(70, 8, 100, 10);
+        case Armas_lista::AMULETO : return std::make_shared<Amuletos>(70, 8, 100, 10, 7);
 
         case Armas_lista::HACHA_S : return std::make_shared<Hacha_simple>(80, 7, 100, 18, 13, 5);
 

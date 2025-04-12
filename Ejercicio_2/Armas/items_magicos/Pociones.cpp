@@ -1,18 +1,15 @@
 #include "Pociones.h"
 
-Pociones::Pociones(int ataque, int energia, int durabilidad, int nivel){
-    this->ataque = ataque;
-    this->energia = energia;
-    this->durabilidad = durabilidad;
-    this->nivel = nivel;
-}
+// Constructor.
+Pociones::Pociones(int ataque, int energia, int durabilidad, int nivel, int duracion) :
+    Item_mag(ataque, durabilidad, nivel, energia, duracion){} 
 
-const std::string Pociones::get_subtipo(){ return subtipo;}
+// Getters para los atributos.
+const std::string Pociones::get_subtipo() {return this->subtipo;}
+int Pociones::get_energia() {return this->energia;}
+int Pociones::get_duracion() {return this->duracion;}
+std::vector<std::string> Pociones::get_mezclas() {return this->Mezclas;}
 
-void Pociones::ataque_primario(){
-    std::cout << "Se toma una pocion de defensa." << std::endl;
-}
-
-void Pociones::ataque_secundario(){
-    std::cout << "Arroja una pocion de ataque." << std::endl;
-}
+// Ataques.
+void Pociones::ataque_primario() {std::cout << "Se toma una pocion de defensa." << std::endl;}
+void Pociones::ataque_secundario() {std::cout << "Arroja una pocion de ataque." << std::endl;}

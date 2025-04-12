@@ -1,22 +1,22 @@
 #ifndef GUERREROS_H
 #define GUERREROS_H
 
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_2/Personajes/personajes.h"
-#include <iostream>
-#include <string>
+#include "../personajes.h"
 
 class Guerreros : public Personaje{
 protected: 
-    const std::string tipo = "Guerrero";
+    const std::string tipo = "Guerrero"; // Siempre es tipo Guerrero, no se puede cambiar.
     int vida;
     int defensa_fisica;
     int defensa_magica;
-    int stamina;
     int nivel;
+    int stamina; // Atributo exclusivo de los guerreros.
+
+    // Armas del guerrero, se guardan como un par de shared_ptr.
     std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas;
 
 public:
-    Guerreros(int vida, int defensa_fisica, int defensa_magica, int stamina, int nivel, std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas);
+    Guerreros(int vida, int defensa_fisica, int defensa_magica, int nivel, int stamina, std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas);
     virtual ~Guerreros() = default;
 
     // Getters para los atributos.
@@ -33,14 +33,14 @@ public:
     void set_defensa_magica(int defensa_magica) override;
     void set_nivel(int nivel) override;
 
+    // Movimientos.
+    void golpe_fuerte() override;
+    void golpe_rapido() override;
+    void defensa_golpe() override;
+
     // Getters Virtuales
     virtual int get_stamina() = 0;
     virtual void set_stamina(int stamina) = 0;
-
-    // Movimientos.
-    virtual void golpe_fuerte() = 0;
-    virtual void golpe_rapido() = 0;
-    virtual void defensa_golpe() = 0;
 };
 
 #endif

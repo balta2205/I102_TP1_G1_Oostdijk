@@ -1,8 +1,7 @@
 #ifndef ARMAS
 #define ARMAS
 
-#include <iostream>
-#include <string>
+#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/utilities.h"
 
 class Arma {
 public:
@@ -15,6 +14,10 @@ public:
     virtual int get_ataque() = 0;
     virtual int get_durabilidad() = 0;
     virtual int get_nivel() = 0;
+
+    // Movimientos.
+    virtual void ataque_primario() = 0;
+    virtual void ataque_secundario() = 0;
 };
 
 #endif

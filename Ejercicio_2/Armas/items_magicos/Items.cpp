@@ -1,19 +1,16 @@
 #include "Items.h" 
 
-// Getter del Tipo
-const std::string Item_mag::get_tipo(){return tipo;}
+// Constructor de la clase Item_mag.
+Item_mag::Item_mag(int ataque, int durabilidad, int nivel, int energia, int duracion) {
+    this->ataque = ataque;
+    this->durabilidad = durabilidad;
+    this->nivel = nivel;
+    this->energia = energia;
+    this->duracion = duracion;
+}
 
-// Getter del ataque
+// Getters de los atributos.
+const std::string Item_mag::get_tipo() {return tipo;}
 int Item_mag::get_ataque() {return ataque;}
-
-// Getter de la energía
-int Item_mag::get_energia() {return energia;}
-
-// Getter de la durabilidad
 int Item_mag::get_durabilidad() {return durabilidad;}
-
-// Getter del nivel
 int Item_mag::get_nivel() {return nivel;}
-
-// Getter de la duracion
-int Item_mag::get_duracion() {return duracion;}

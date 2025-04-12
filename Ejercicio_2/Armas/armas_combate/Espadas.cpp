@@ -1,20 +1,15 @@
 #include "Espadas.h"
 
-Espada::Espada(int ataque, int velocidad, int durabilidad, int nivel, int peso, int alcance){
-    this->ataque = ataque;
-    this->velocidad = velocidad;
-    this->durabilidad = durabilidad;
-    this->nivel = nivel;
-    this->peso = peso;
-    this->alcance = alcance;
-}
+// Constructor de la clase Espada.
+Espada::Espada(int ataque, int velocidad, int durabilidad, int nivel, int peso, int alcance) :
+Armas_comb(ataque, durabilidad, nivel, velocidad, peso, alcance) {}
 
-const std::string Espada::get_subtipo() {return subtipo;}
+// Getters de los atributos.
+const std::string Espada::get_subtipo() {return this->subtipo;}
+int Espada::get_velocidad() {return this->velocidad;}
+int Espada::get_peso() {return this->peso;}
+int Espada::get_alcance() {return this->alcance;}
 
-void Espada::ataque_primario(){
-    std::cout << "Ataca con la espada" << std::endl;
-}
-
-void Espada::ataque_secundario(){
-    std::cout << "Golpe cargado con la espada." << std::endl;
-}
+// Ataques.
+void Espada::ataque_primario() {std::cout << "Ataca con la espada" << std::endl;}
+void Espada::ataque_secundario() {std::cout << "Golpe cargado con la espada." << std::endl;}

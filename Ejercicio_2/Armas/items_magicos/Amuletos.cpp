@@ -1,18 +1,15 @@
 #include "Amuletos.h"
 
-Amuletos::Amuletos(int ataque, int energia, int durabilidad, int nivel){
-    this->ataque = ataque;
-    this->energia = energia;
-    this->durabilidad = durabilidad;
-    this->nivel = nivel;
-}
+// Constructor.
+Amuletos::Amuletos(int ataque, int energia, int durabilidad, int nivel, int duracion) :
+    Item_mag(ataque, durabilidad, nivel, energia, duracion) {}
 
-const std::string Amuletos::get_subtipo(){ return subtipo;}
+// Getters para los atributos.
+const std::string Amuletos::get_subtipo() {return this->subtipo;}
+int Amuletos::get_energia() {return this->energia;}
+int Amuletos::get_duracion() {return this->duracion;}
+std::vector<std::string> Amuletos::get_materiales() {return this->materiales;}
 
-void Amuletos::ataque_primario(){
-    std::cout << "Activa el amuleto" << std::endl;
-}
-
-void Amuletos::ataque_secundario(){
-    std::cout << "Desactiva el amuleto." << std::endl;
-}
+// Ataques.
+void Amuletos::ataque_primario() {std::cout << "Activa el amuleto" << std::endl;}
+void Amuletos::ataque_secundario() {std::cout << "Desactiva el amuleto." << std::endl;}

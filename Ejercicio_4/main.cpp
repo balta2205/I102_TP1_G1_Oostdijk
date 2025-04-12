@@ -79,12 +79,65 @@ int main(){
     if(tipo_enemigo == "Mago") {std::shared_ptr<Magos> enemigo = std::dynamic_pointer_cast<Magos>(enemigo);}
     else {std::shared_ptr<Guerreros> enemigo = std::dynamic_pointer_cast<Guerreros>(enemigo);}
 
+    std::string subtipo = enemigo->get_subtipo();
+    Limpiar_terminal();
+    std::cout << subtipo << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    if(tipo_enemigo == "Guerrero"){
+        switch(subtipo[0]){
+            case 'B':{ // Barbaro
+                std::shared_ptr<Barbaro> enemigo = std::dynamic_pointer_cast<Barbaro>(enemigo);
+                break;}
+            case 'P':{ // Paladin
+                std::shared_ptr<Paladin> enemigo = std::dynamic_pointer_cast<Paladin>(enemigo);
+                break;}
+            case 'C':{ // Caballero
+                std::shared_ptr<Caballero> enemigo = std::dynamic_pointer_cast<Caballero>(enemigo);
+                break;}
+            case 'M':{ // Mercenario
+                std::shared_ptr<Mercenario> enemigo = std::dynamic_pointer_cast<Mercenario>(enemigo);
+                break;}
+            case 'G':{ // Gladiador
+                std::shared_ptr<Gladiador> enemigo = std::dynamic_pointer_cast<Gladiador>(enemigo);
+                break;}
+            default:{ // Invalido
+                std::cout << "Tipo de Guerrero invalido." << std::endl;
+                break;} 
+        }
+    }
+    else{
+        switch(subtipo[0]){
+            case 'H':{ // Hechicero
+                std::shared_ptr<Hechicero> enemigo = std::dynamic_pointer_cast<Hechicero>(enemigo);
+                break;}
+            case 'C':{ // Conjurador
+                std::shared_ptr<Conjurador> enemigo = std::dynamic_pointer_cast<Conjurador>(enemigo);
+                break;}
+            case 'B':{ // Brujo
+                std::shared_ptr<Brujo> enemigo = std::dynamic_pointer_cast<Brujo>(enemigo);
+                break;}
+            case 'N':{ // Nigromante
+                std::shared_ptr<Nigromante> enemigo = std::dynamic_pointer_cast<Nigromante>(enemigo);
+                break;}
+            default:{ // Invalido
+                std::cout << "Tipo de Mago invalido." << std::endl;
+                break;}
+        }
+    }
+
+
     std::cout << "El enemigo de tipo Mago: " << enemigo->get_subtipo() << " tiene las siguientes estadisticas: " << std::endl;
     std::cout << "\tVida: " << enemigo->get_vida() << std::endl;
     std::cout << "\tDefensa Magica: " << enemigo->get_defensa_magica() << std::endl;
     std::cout << "\tDefensa Fisica: " << enemigo->get_defensa_fisica() << std::endl;
-    if(tipo_enemigo == "Mago")std::cout << "\tMana: " << enemigo->get_mana() << std::endl;
-    else std::cout << "\tStamina: " << enemigo->get_stamina() << std::endl;
+
+
+    // if(tipo_enemigo == "Mago")std::cout << "\tMana: " << enemigo->get_mana() << std::endl;
+    // else std::cout << "\tStamina: " << enemigo->get_stamina() << std::endl;
+
+
     std::cout << "\tArma Especial: " << enemigo->get_arma_especial() << std::endl;
     std::cout << "\tArma 1: " << enemigo->get_armas().first->get_subtipo() << std::endl;
     std::cout << "\tNivel: " << enemigo->get_nivel() << std::endl;
@@ -210,7 +263,7 @@ void mostrar_estadisticas_armas(Armas_lista opcion){
             std::cout << "\tEnergia: 10" << std::endl;
             std::cout << "\tDurabilidad: 100" << std::endl;
             std::cout << "\tNivel: 20" << std::endl;
-            std::cout << "\tDuracion: 15" << std::endl;
+            std::cout << "\tDuracion: 0" << std::endl;
         } 
         case Armas_lista::LIBROHECHIZO :{
             std::cout << "Arma elegida: Libro de Hechizos" << std::endl;
@@ -219,7 +272,7 @@ void mostrar_estadisticas_armas(Armas_lista opcion){
             std::cout << "\tEnergia: 10" << std::endl;
             std::cout << "\tDurabilidad: 100" << std::endl;
             std::cout << "\tNivel: 20" << std::endl;
-            std::cout << "\tDuracion: 15" << std::endl;
+            std::cout << "\tDuracion: 5" << std::endl;
         }
         case Armas_lista::POCION :{
             std::cout << "Arma elegida: Pocion" << std::endl;
@@ -228,7 +281,7 @@ void mostrar_estadisticas_armas(Armas_lista opcion){
             std::cout << "\tEnergia: 5" << std::endl;
             std::cout << "\tDurabilidad: 100" << std::endl;
             std::cout << "\tNivel: 20" << std::endl;
-            std::cout << "\tDuracion: 15" << std::endl;
+            std::cout << "\tDuracion: 3" << std::endl;
         } 
         case Armas_lista::AMULETO :{
             std::cout << "Arma elegida: Amuleto" << std::endl;
@@ -237,7 +290,7 @@ void mostrar_estadisticas_armas(Armas_lista opcion){
             std::cout << "\tEnergia: 8" << std::endl;
             std::cout << "\tDurabilidad: 100" << std::endl;
             std::cout << "\tNivel: 20" << std::endl;
-            std::cout << "\tDuracion: 15" << std::endl;
+            std::cout << "\tDuracion: 7" << std::endl;
         } 
         case Armas_lista::HACHA_S :{
             std::cout << "Arma elegida: Hacha Simple" << std::endl;

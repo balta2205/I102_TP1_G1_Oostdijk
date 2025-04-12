@@ -1,21 +1,19 @@
 #ifndef ITEMS_H
 #define ITEMS_H
 
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_2/Armas/armas.h"
-#include <iostream>
-#include <string>
+#include "../armas.h"
 
 class Item_mag : public Arma{
 protected:
-    const std::string tipo = "Item Magico";
+    const std::string tipo = "Item Magico"; // Tipo de arma.
     int ataque;
-    int energia;
     int durabilidad;
     int nivel;
-    int duracion;
+    int energia; // Atributo especifico de los items magicos.
+    int duracion; // Atributo especifico de los items magicos.
 
 public:
-    // Destructor.
+    Item_mag(int ataque, int durabilidad, int nivel, int energia, int duracion);
     virtual ~Item_mag() = default;
 
     // Getters.
@@ -23,15 +21,7 @@ public:
     int get_ataque() override;
     int get_durabilidad() override;
     int get_nivel() override;
-    int get_energia();
-    int get_duracion();
-
-    // Getter Virtual para subtipo
-    virtual const std::string get_subtipo() = 0;
-
-    // Movimientos.
-    virtual void ataque_primario() = 0;
-    virtual void ataque_secundario() = 0;
+    virtual int get_energia() = 0; // Solo las armas tipo item magico tendran este atributo.
+    virtual int get_duracion() = 0; // Solo las armas tipo item magico tendran este atributo.
 };
-
 #endif

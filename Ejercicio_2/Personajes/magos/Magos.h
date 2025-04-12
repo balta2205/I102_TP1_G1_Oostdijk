@@ -1,22 +1,22 @@
 #ifndef MAGOS_H
 #define MAGOS_H
 
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_2/Personajes/personajes.h"
-#include <iostream>
-#include <string>
+#include "../personajes.h"
 
 class Magos : public Personaje{
 protected: 
-    const std::string tipo = "Mago";
+    const std::string tipo = "Mago"; // Siempre es tipo Mago, no se puede cambiar.
     int vida;
     int defensa_fisica;
     int defensa_magica;
-    int mana;
     int nivel;
+    int mana; // Atributo exclusivo de los magos.
+
+    // Armas del mago, se guardan como un par de shared_ptr.
     std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas;
 
 public:
-    Magos(int vida, int defensa_fisica, int defensa_magica, int mana, int nivel, std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas);
+    Magos(int vida, int defensa_fisica, int defensa_magica, int nivel, int mana, std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas);
     virtual ~Magos() = default; 
 
     // Getters para los atributos.
@@ -32,17 +32,15 @@ public:
     void set_defensa_fisica(int defensa_fisica) override;
     void set_defensa_magica(int defensa_magica) override;
     void set_nivel(int nivel) override;
+
+    // Movimientos.
+    void golpe_fuerte() override;
+    void golpe_rapido() override;
+    void defensa_golpe() override;
     
     // Getters Virtuales
     virtual int get_mana() = 0;
     virtual void set_mana(int mana) = 0;
-
-    // Movimientos.
-    virtual void golpe_fuerte() = 0;
-    virtual void golpe_rapido() = 0;
-    virtual void defensa_golpe() = 0;
-
-
 };
 
 #endif
