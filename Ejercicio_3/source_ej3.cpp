@@ -1,8 +1,7 @@
 #ifndef SOURCE_EJ3
 #define SOURCE_EJ3
 
-#include "main_ej3.h"
-
+#include "source_ej3.h"
 
 void Limpiar_terminal(){
     #ifdef _WIN32

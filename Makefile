@@ -1,46 +1,29 @@
-CXX = g++
-CXXFLAGS = -std=c++17 -Wall -g
-INCLUDES = -I.
+HEADERS = -I Ejercicio_1/Personajes/ \
+          -I Ejercicio_1/Personajes/magos/ \
+          -I Ejercicio_1/Personajes/guerreros/ \
+          -I Ejercicio_1/Armas/ \
+          -I Ejercicio_1/Armas/armas_combate/ \
+          -I Ejercicio_1/Armas/items_magicos/ \
+          -I . \
+          -I Ejercicio_2/ \
+          -I Ejercicio_3/
 
-# Carpetas
-SRC_DIR = .
-OBJ_DIR = obj
+SRC_COMMON = Ejercicio_1/Personajes/magos/*.cpp \
+             Ejercicio_1/Personajes/guerreros/*.cpp \
+             Ejercicio_1/Armas/armas_combate/*.cpp \
+             Ejercicio_1/Armas/items_magicos/*.cpp
 
-# Archivos fuente
-SRC_EJ2 = \
-  $(wildcard ./Ejercicio_1/Armas/*/*.cpp) \
-  $(wildcard ./Ejercicio_1/Personajes/*/*.cpp) \
-  ./Ejercicio_2/Factory.cpp \
-  ./Ejercicio_2/source_ej2.cpp \
-  ./Ejercicio_2/main_ej2.cpp
+SRC_EJ2 = Ejercicio_2/Factory.cpp Ejercicio_2/source_ej2.cpp
+SRC_EJ3 = Ejercicio_2/Factory.cpp Ejercicio_2/source_ej2.cpp Ejercicio_3/source_ej3.cpp
 
-SRC_EJ3 = \
-  $(wildcard ./Ejercicio_1/Armas/*/*.cpp) \
-  $(wildcard ./Ejercicio_1/Personajes/*/*.cpp) \
-  ./Ejercicio_2/Factory.cpp \
-  ./Ejercicio_3/source_ej3.cpp \
-  ./Ejercicio_3/main_ej3.cpp
+ej2:
+	g++ -std=c++17 -Wall -Wextra $(HEADERS) -g Ejercicio_2/main_ej2.cpp $(SRC_COMMON) $(SRC_EJ2) -o ejercicio2
+	./ejercicio2
 
-# Archivos objeto
-OBJ_EJ2 = $(patsubst %.cpp,$(OBJ_DIR)/%.h,$(SRC_EJ2))
-OBJ_EJ3 = $(patsubst %.cpp,$(OBJ_DIR)/%.h,$(SRC_EJ3))
-
-# Ejecutables
-BIN_EJ2 = ej2
-BIN_EJ3 = ej3
-
-all: $(BIN_EJ2) $(BIN_EJ3)
-
-$(BIN_EJ2): $(OBJ_EJ2)
-	$(CXX) $(CXXFLAGS) $^ -o $@
-
-$(BIN_EJ3): $(OBJ_EJ3)
-	$(CXX) $(CXXFLAGS) $^ -o $@
-
-# Regla para compilar objetos
-$(OBJ_DIR)/%.cpp.o: %.cpp
-	@mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+ej3:
+	g++ -std=c++17 -Wall -Wextra $(HEADERS) -g Ejercicio_3/main_ej3.cpp $(SRC_COMMON) $(SRC_EJ3) -o ejercicio3
+	./ejercicio3
 
 clean:
-	rm -rf $(OBJ_DIR) $(BIN_EJ2) $(BIN_EJ3)
+	rm -f ejercicio2 ejercicio3
+	rm -rf *.dSYM/

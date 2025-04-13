@@ -1,6 +1,7 @@
-#ifndef MAIN_EJ3_H
-#define MAIN_EJ3_H
+#ifndef SOURCE_EJ3_H
+#define SOURCE_EJ3_H
 
+#include "../Ejercicio_2/source_ej2.h"
 #include "../Ejercicio_2/Factory.h"
 #include "../utilities.h"
 

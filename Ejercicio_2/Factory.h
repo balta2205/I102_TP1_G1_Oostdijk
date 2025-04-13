@@ -3,32 +3,38 @@
 
 // Include utilities
 #include "../utilities.h"
+#include "../Ejercicio_1/Personajes/personajes.h"
+#include "../Ejercicio_1/Armas/armas.h"
 
 // Includes Armas de Combate
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_1/Armas/armas_combate/Hachas_S.h"
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_1/Armas/armas_combate/Hachas_D.h"
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_1/Armas/armas_combate/Espadas.h"
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_1/Armas/armas_combate/Lanzas.h"
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_1/Armas/armas_combate/Garrotes.h"
+#include "../Ejercicio_1/Armas/armas_combate/Armas_comb.h"
+#include "../Ejercicio_1/Armas/armas_combate/Hachas_S.h"
+#include "../Ejercicio_1/Armas/armas_combate/Hachas_D.h"
+#include "../Ejercicio_1/Armas/armas_combate/Espadas.h"
+#include "../Ejercicio_1/Armas/armas_combate/Lanzas.h"
+#include "../Ejercicio_1/Armas/armas_combate/Garrotes.h"
 
 // Includes Items Magicos
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_1/Armas/items_magicos/Bastones.h"
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_1/Armas/items_magicos/LibroHechizos.h"
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_1/Armas/items_magicos/Pociones.h"
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_1/Armas/items_magicos/Amuletos.h"
+#include "../Ejercicio_1/Armas/items_magicos/Items.h"
+#include "../Ejercicio_1/Armas/items_magicos/Bastones.h"
+#include "../Ejercicio_1/Armas/items_magicos/LibroHechizos.h"
+#include "../Ejercicio_1/Armas/items_magicos/Pociones.h"
+#include "../Ejercicio_1/Armas/items_magicos/Amuletos.h"
 
 // Includes Guerreros
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_1/Personajes/guerreros/Barbaros.h"
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_1/Personajes/guerreros/Paladines.h"
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_1/Personajes/guerreros/Caballeros.h"
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_1/Personajes/guerreros/Mercenarios.h"
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_1/Personajes/guerreros/Gladiadores.h"
+#include "../Ejercicio_1/Personajes/guerreros/Guerreros.h"
+#include "../Ejercicio_1/Personajes/guerreros/Barbaros.h"
+#include "../Ejercicio_1/Personajes/guerreros/Paladines.h"
+#include "../Ejercicio_1/Personajes/guerreros/Caballeros.h"
+#include "../Ejercicio_1/Personajes/guerreros/Mercenarios.h"
+#include "../Ejercicio_1/Personajes/guerreros/Gladiadores.h"
 
 // Includes Magos
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_1/Personajes/magos/Hechiceros.h"
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_1/Personajes/magos/Conjuradores.h"
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_1/Personajes/magos/Brujos.h"
-#include "/root/snap/Paradigmas/I102_TP1_G1_Oostdijk/Ejercicio_1/Personajes/magos/Nigromantes.h"
+#include "../Ejercicio_1/Personajes/magos/Magos.h"
+#include "../Ejercicio_1/Personajes/magos/Hechiceros.h"
+#include "../Ejercicio_1/Personajes/magos/Conjuradores.h"
+#include "../Ejercicio_1/Personajes/magos/Brujos.h"
+#include "../Ejercicio_1/Personajes/magos/Nigromantes.h"
 
 // Clase PersonajeFactory -> Factory para crear personajes y armas
 class PersonajeFactory {
@@ -37,7 +43,6 @@ public:
     static std::shared_ptr<Personaje> crearPersonaje(Personas personaje);
     static std::shared_ptr<Personaje> crearPersonajeArmado(Personas personaje, std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas);
 };
-#endif
 
 // Declaraciones de funciones del main.cpp
 int numero_aleatorio(int min, int max);
@@ -52,3 +57,5 @@ std::shared_ptr<Personaje> random_personaje_guerrero(std::pair<std::shared_ptr<A
 void crear_personajes(std::vector<std::shared_ptr<Personaje>>& guerreros, int cant_guerreros, std::vector<std::shared_ptr<Personaje>>& magos, int cant_magos);
 void mostrar_personaje(const std::shared_ptr<Personaje>& personaje);
 void imprimir_personajes(const std::vector<std::shared_ptr<Personaje>>& guerreros, const std::vector<std::shared_ptr<Personaje>>& magos);
+
+#endif

@@ -1,4 +1,4 @@
-#include "source_ej2.cpp"
+#include "source_ej2.h"
 
 int main(){
     srand(time(0));
