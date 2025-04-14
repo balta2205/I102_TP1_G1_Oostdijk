@@ -5,6 +5,7 @@ int main(){
     bool opcion_invalida = false, is_guerrero = true;
     std::string tipo_enemigo;
     Personas opcion = Personas::null;
+    srand(time(0));
     
     // Inicio de simulacion, se elige personaje.
     while(true){ 
