@@ -218,7 +218,7 @@ int main(){
                 std::cout << "Opcion invalida, por favor intente de nuevo." << std::endl;
                 continue;}
         }
-        std::cout << "==============================\n" << std::endl;
+        std::cout << "===================================================================================\n" << std::endl;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Resultados de la ronda
         std::shared_ptr<Personaje> ganador = definir_ganador(amigo, enemigo, ataque_amigo, ataque_enemigo);
@@ -230,18 +230,98 @@ int main(){
             switch(ataque_amigo){
                 case Ataques::GOLPE_FUERTE :{
                     std::cout << "¡¡El amigo ha realizado un Golpe Fuerte con " << amigo->get_armas().first->get_subtipo() << " mientras que el enemigo ha realizado un Golpe Rapido!!" << std::endl;
-                    std::cout << "El enemigo ha recibido " << amigo->get_armas().first->get_ataque() << " de daño." << std::endl;
-                    enemigo->set_vida(enemigo->get_vida() - amigo->get_armas().first->get_ataque());
+                    
+                    if(amigo->get_armas().first->get_tipo() == "Armas de Combate" && amigo->get_tipo() == "Guerrero") {
+                        if(amigo->get_arma_especial() == amigo->get_armas().first->get_subtipo()) {
+                            std::cout << "Daño extra por arma especial: x1.15" << std::endl;
+                            std::cout << "El enemigo ha recibido " << amigo->get_armas().first->get_ataque()*1.15 << " de daño." << std::endl;
+                            enemigo->set_vida(enemigo->get_vida() - amigo->get_armas().first->get_ataque()*1.15);
+                        }
+                        else {
+                            std::cout << "Daño extra por arma especial: x1.1" << std::endl;
+                            std::cout << "El enemigo ha recibido " << amigo->get_armas().first->get_ataque()*1.1 << " de daño." << std::endl;
+                            enemigo->set_vida(enemigo->get_vida() - amigo->get_armas().first->get_ataque()*1.1);
+                        }
+                    }
+                    else if(amigo->get_armas().first->get_tipo() == "Item Magico" && amigo->get_tipo() == "Mago") {
+                        if(amigo->get_arma_especial() == amigo->get_armas().first->get_subtipo()) {
+                            std::cout << "Daño extra por arma especial: x1.15" << std::endl;
+                            std::cout << "El enemigo ha recibido " << amigo->get_armas().first->get_ataque()*1.15 << " de daño." << std::endl;
+                            enemigo->set_vida(enemigo->get_vida() - amigo->get_armas().first->get_ataque()*1.15);
+                        }
+                        else {
+                            std::cout << "Daño extra por arma especial: x1.1" << std::endl;
+                            std::cout << "El enemigo ha recibido " << amigo->get_armas().first->get_ataque()*1.1 << " de daño." << std::endl;
+                            enemigo->set_vida(enemigo->get_vida() - amigo->get_armas().first->get_ataque()*1.1);
+                        }
+                    }
+                    else {
+                        std::cout << "El enemigo ha recibido " << amigo->get_armas().first->get_ataque() << " de daño." << std::endl;
+                        enemigo->set_vida(enemigo->get_vida() - amigo->get_armas().first->get_ataque());
+                    }
                     break;}
                 case Ataques::GOLPE_RAPIDO :{
                     std::cout << "¡¡El amigo ha realizado un Golpe Rapido con " << amigo->get_armas().first->get_subtipo() << " mientras que el enemigo ha realizado un Defensa Golpe!!" << std::endl;
                     std::cout << "El enemigo ha recibido " << amigo->get_armas().second->get_ataque() << " de daño." << std::endl;
-                    enemigo->set_vida(enemigo->get_vida() - amigo->get_armas().second->get_ataque());
+                    if(amigo->get_armas().first->get_tipo() == "Armas de Combate" && amigo->get_tipo() == "Guerrero") {
+                        if(amigo->get_arma_especial() == amigo->get_armas().first->get_subtipo()) {
+                            std::cout << "Daño extra por arma especial: x1.15" << std::endl;
+                            std::cout << "El enemigo ha recibido " << amigo->get_armas().first->get_ataque()*1.15 << " de daño." << std::endl;
+                            enemigo->set_vida(enemigo->get_vida() - amigo->get_armas().first->get_ataque()*1.15);
+                        }
+                        else {
+                            std::cout << "Daño extra por arma especial: x1.1" << std::endl;
+                            std::cout << "El enemigo ha recibido " << amigo->get_armas().first->get_ataque()*1.1 << " de daño." << std::endl;
+                            enemigo->set_vida(enemigo->get_vida() - amigo->get_armas().first->get_ataque()*1.1);
+                        }
+                    }
+                    else if(amigo->get_armas().first->get_tipo() == "Item Magico" && amigo->get_tipo() == "Mago") {
+                        if(amigo->get_arma_especial() == amigo->get_armas().first->get_subtipo()) {
+                            std::cout << "Daño extra por arma especial: x1.15" << std::endl;
+                            std::cout << "El enemigo ha recibido " << amigo->get_armas().first->get_ataque()*1.15 << " de daño." << std::endl;
+                            enemigo->set_vida(enemigo->get_vida() - amigo->get_armas().first->get_ataque()*1.15);
+                        }
+                        else {
+                            std::cout << "Daño extra por arma especial: x1.1" << std::endl;
+                            std::cout << "El enemigo ha recibido " << amigo->get_armas().first->get_ataque()*1.1 << " de daño." << std::endl;
+                            enemigo->set_vida(enemigo->get_vida() - amigo->get_armas().first->get_ataque()*1.1);
+                        }
+                    }
+                    else {
+                        std::cout << "El enemigo ha recibido " << amigo->get_armas().first->get_ataque() << " de daño." << std::endl;
+                        enemigo->set_vida(enemigo->get_vida() - amigo->get_armas().first->get_ataque());
+                    }
                     break;}
                 case Ataques::DEFENSA_GOLPE :{
                     std::cout << "¡¡El amigo ha realizado un Defensa Golpe con " << amigo->get_armas().first->get_subtipo() << " mientras que el enemigo ha realizado un Golpe Fuerte!!" << std::endl;
-                    std::cout << "El enemigo ha recibido " << amigo->get_armas().first->get_ataque()/2 << " de daño." << std::endl;
-                    enemigo->set_vida(enemigo->get_vida() - amigo->get_armas().first->get_ataque()/2);
+                    if(amigo->get_armas().first->get_tipo() == "Armas de Combate" && amigo->get_tipo() == "Guerrero") {
+                        if(amigo->get_arma_especial() == amigo->get_armas().first->get_subtipo()) {
+                            std::cout << "Daño extra por arma especial: x1.15" << std::endl;
+                            std::cout << "El enemigo ha recibido " << amigo->get_armas().first->get_ataque()*1.15 << " de daño." << std::endl;
+                            enemigo->set_vida(enemigo->get_vida() - amigo->get_armas().first->get_ataque()*1.15);
+                        }
+                        else {
+                            std::cout << "Daño extra por arma especial: x1.1" << std::endl;
+                            std::cout << "El enemigo ha recibido " << amigo->get_armas().first->get_ataque()*1.1 << " de daño." << std::endl;
+                            enemigo->set_vida(enemigo->get_vida() - amigo->get_armas().first->get_ataque()*1.1);
+                        }
+                    }
+                    else if(amigo->get_armas().first->get_tipo() == "Item Magico" && amigo->get_tipo() == "Mago") {
+                        if(amigo->get_arma_especial() == amigo->get_armas().first->get_subtipo()) {
+                            std::cout << "Daño extra por arma especial: x1.15" << std::endl;
+                            std::cout << "El enemigo ha recibido " << amigo->get_armas().first->get_ataque()*1.15 << " de daño." << std::endl;
+                            enemigo->set_vida(enemigo->get_vida() - amigo->get_armas().first->get_ataque()*1.15);
+                        }
+                        else {
+                            std::cout << "Daño extra por arma especial: x1.1" << std::endl;
+                            std::cout << "El enemigo ha recibido " << amigo->get_armas().first->get_ataque()*1.1 << " de daño." << std::endl;
+                            enemigo->set_vida(enemigo->get_vida() - amigo->get_armas().first->get_ataque()*1.1);
+                        }
+                    }
+                    else {
+                        std::cout << "El enemigo ha recibido " << amigo->get_armas().first->get_ataque() << " de daño." << std::endl;
+                        enemigo->set_vida(enemigo->get_vida() - amigo->get_armas().first->get_ataque());
+                    }
                     break;}
                 default :{
                     std::cout << "Opcion invalida, por favor intente de nuevo." << std::endl;
@@ -253,18 +333,96 @@ int main(){
             switch(ataque_enemigo){
                 case Ataques::GOLPE_FUERTE :{
                     std::cout << "¡¡El enemigo ha realizado un Golpe Fuerte con " << enemigo->get_armas().first->get_subtipo() << " mientras que el amigo ha realizado un Golpe Rapido!!" << std::endl;
-                    std::cout << "El amigo ha recibido " << enemigo->get_armas().first->get_ataque() << " de daño." << std::endl;
-                    amigo->set_vida(amigo->get_vida() - enemigo->get_armas().first->get_ataque());
+                    if(enemigo->get_armas().first->get_tipo() == "Armas de Combate" && enemigo->get_tipo() == "Guerrero") {
+                        if(enemigo->get_arma_especial() == enemigo->get_armas().first->get_subtipo()) {
+                            std::cout << "Daño extra por arma especial: x1.15" << std::endl;
+                            std::cout << "El amigo ha recibido " << enemigo->get_armas().first->get_ataque()*1.15 << " de daño." << std::endl;
+                            amigo->set_vida(amigo->get_vida() - enemigo->get_armas().first->get_ataque()*1.15);
+                        }
+                        else {
+                            std::cout << "Daño extra por arma especial: x1.1" << std::endl;
+                            std::cout << "El amigo ha recibido " << enemigo->get_armas().first->get_ataque()*1.1 << " de daño." << std::endl;
+                            amigo->set_vida(amigo->get_vida() - enemigo->get_armas().first->get_ataque()*1.1);
+                        }
+                    }
+                    else if(enemigo->get_armas().first->get_tipo() == "Item Magico" && enemigo->get_tipo() == "Mago") {
+                        if(enemigo->get_arma_especial() == enemigo->get_armas().first->get_subtipo()) {
+                            std::cout << "Daño extra por arma especial: x1.15" << std::endl;
+                            std::cout << "El amigo ha recibido " << enemigo->get_armas().first->get_ataque()*1.15 << " de daño." << std::endl;
+                            amigo->set_vida(amigo->get_vida() - enemigo->get_armas().first->get_ataque()*1.15);
+                        }
+                        else {
+                            std::cout << "Daño extra por arma especial: x1.1" << std::endl;
+                            std::cout << "El amigo ha recibido " << enemigo->get_armas().first->get_ataque()*1.1 << " de daño." << std::endl;
+                            amigo->set_vida(amigo->get_vida() - enemigo->get_armas().first->get_ataque()*1.1);
+                        }
+                    }
+                    else {
+                        std::cout << "El amigo ha recibido " << enemigo->get_armas().first->get_ataque() << " de daño." << std::endl;
+                        amigo->set_vida(amigo->get_vida() - enemigo->get_armas().first->get_ataque());
+                    }
                     break;}
                 case Ataques::GOLPE_RAPIDO :{
                     std::cout << "¡¡El enemigo ha realizado un Defensa Golpe con " << enemigo->get_armas().first->get_subtipo() << " mientras que el amigo ha realizado un Golpe Fuerte!!" << std::endl;
-                    std::cout << "El amigo ha recibido " << enemigo->get_armas().second->get_ataque() << " de daño." << std::endl;
-                    amigo->set_vida(amigo->get_vida() - enemigo->get_armas().second->get_ataque());
+                    if(enemigo->get_armas().first->get_tipo() == "Armas de Combate" && enemigo->get_tipo() == "Guerrero") {
+                        if(enemigo->get_arma_especial() == enemigo->get_armas().first->get_subtipo()) {
+                            std::cout << "Daño extra por arma especial: x1.15" << std::endl;
+                            std::cout << "El amigo ha recibido " << enemigo->get_armas().first->get_ataque()*1.15 << " de daño." << std::endl;
+                            amigo->set_vida(amigo->get_vida() - enemigo->get_armas().first->get_ataque()*1.15);
+                        }
+                        else {
+                            std::cout << "Daño extra por arma especial: x1.1" << std::endl;
+                            std::cout << "El amigo ha recibido " << enemigo->get_armas().first->get_ataque()*1.1 << " de daño." << std::endl;
+                            amigo->set_vida(amigo->get_vida() - enemigo->get_armas().first->get_ataque()*1.1);
+                        }
+                    }
+                    else if(enemigo->get_armas().first->get_tipo() == "Item Magico" && enemigo->get_tipo() == "Mago") {
+                        if(enemigo->get_arma_especial() == enemigo->get_armas().first->get_subtipo()) {
+                            std::cout << "Daño extra por arma especial: x1.15" << std::endl;
+                            std::cout << "El amigo ha recibido " << enemigo->get_armas().first->get_ataque()*1.15 << " de daño." << std::endl;
+                            amigo->set_vida(amigo->get_vida() - enemigo->get_armas().first->get_ataque()*1.15);
+                        }
+                        else {
+                            std::cout << "Daño extra por arma especial: x1.1" << std::endl;
+                            std::cout << "El amigo ha recibido " << enemigo->get_armas().first->get_ataque()*1.1 << " de daño." << std::endl;
+                            amigo->set_vida(amigo->get_vida() - enemigo->get_armas().first->get_ataque()*1.1);
+                        }
+                    }
+                    else {
+                        std::cout << "El amigo ha recibido " << enemigo->get_armas().first->get_ataque() << " de daño." << std::endl;
+                        amigo->set_vida(amigo->get_vida() - enemigo->get_armas().first->get_ataque());
+                    }
                     break;}
                 case Ataques::DEFENSA_GOLPE :{
                     std::cout << "¡¡El enemigo ha realizado un Defensa Golpe con " << enemigo->get_armas().first->get_subtipo() << " mientras que el amigo ha realizado un Golpe Fuerte!!" << std::endl;
-                    std::cout << "El amigo ha recibido " << enemigo->get_armas().first->get_ataque()/2 << " de daño." << std::endl;
-                    amigo->set_vida(amigo->get_vida() - enemigo->get_armas().first->get_ataque()/2);
+                    if(enemigo->get_armas().first->get_tipo() == "Armas de Combate" && enemigo->get_tipo() == "Guerrero") {
+                        if(enemigo->get_arma_especial() == enemigo->get_armas().first->get_subtipo()) {
+                            std::cout << "Daño extra por arma especial: x1.15" << std::endl;
+                            std::cout << "El amigo ha recibido " << enemigo->get_armas().first->get_ataque()*1.15 << " de daño." << std::endl;
+                            amigo->set_vida(amigo->get_vida() - enemigo->get_armas().first->get_ataque()*1.15);
+                        }
+                        else {
+                            std::cout << "Daño extra por arma especial: x1.1" << std::endl;
+                            std::cout << "El amigo ha recibido " << enemigo->get_armas().first->get_ataque()*1.1 << " de daño." << std::endl;
+                            amigo->set_vida(amigo->get_vida() - enemigo->get_armas().first->get_ataque()*1.1);
+                        }
+                    }
+                    else if(enemigo->get_armas().first->get_tipo() == "Item Magico" && enemigo->get_tipo() == "Mago") {
+                        if(enemigo->get_arma_especial() == enemigo->get_armas().first->get_subtipo()) {
+                            std::cout << "Daño extra por arma especial: x1.15" << std::endl;
+                            std::cout << "El amigo ha recibido " << enemigo->get_armas().first->get_ataque()*1.15 << " de daño." << std::endl;
+                            amigo->set_vida(amigo->get_vida() - enemigo->get_armas().first->get_ataque()*1.15);
+                        }
+                        else {
+                            std::cout << "Daño extra por arma especial: x1.1" << std::endl;
+                            std::cout << "El amigo ha recibido " << enemigo->get_armas().first->get_ataque()*1.1 << " de daño." << std::endl;
+                            amigo->set_vida(amigo->get_vida() - enemigo->get_armas().first->get_ataque()*1.1);
+                        }
+                    }
+                    else {
+                        std::cout << "El amigo ha recibido " << enemigo->get_armas().first->get_ataque() << " de daño." << std::endl;
+                        amigo->set_vida(amigo->get_vida() - enemigo->get_armas().first->get_ataque());
+                    }
                     break;}
                 default :{
                     std::cout << "Opcion invalida, por favor intente de nuevo." << std::endl;
