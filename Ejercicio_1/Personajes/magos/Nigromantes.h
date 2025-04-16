@@ -10,7 +10,7 @@ private:
 
 public: 
     // Constructor
-    Nigromante(int vida, int defensa_fisica, int defensa_magica, int mana, int nivel, std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas);
+    Nigromante(int vida, int defensa_fisica, int defensa_magica, int mana, int nivel, std::pair<std::unique_ptr<Arma>, std::unique_ptr<Arma>> armas);
 
     // Getters para los atributos.
     const std::string get_subtipo() override; 

@@ -8,7 +8,7 @@ Armas_comb::Armas_comb(int ataque, int durabilidad, int nivel, int velocidad, in
     this->velocidad = velocidad;
     this->peso = peso;
     this->alcance = alcance;
-}
+} 
 
 // Getters de los atributos.
 const std::string Armas_comb::get_tipo() {return this->tipo;};

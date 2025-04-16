@@ -1,5 +1,5 @@
 #include "Items.h" 
-
+ 
 // Constructor de la clase Item_mag.
 Item_mag::Item_mag(int ataque, int durabilidad, int nivel, int energia, int duracion) {
     this->ataque = ataque;

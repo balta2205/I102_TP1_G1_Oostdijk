@@ -1,5 +1,5 @@
 #include "Amuletos.h"
-
+ 
 // Constructor.
 Amuletos::Amuletos(int ataque, int energia, int durabilidad, int nivel, int duracion) :
     Item_mag(ataque, durabilidad, nivel, energia, duracion) {}

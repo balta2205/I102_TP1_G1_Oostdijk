@@ -39,8 +39,8 @@ int main(){
     }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Seleccion de armas
-    std::shared_ptr<Arma> amigo_arma1 = elegir_arma(opcion, is_guerrero); 
-    std::shared_ptr<Arma> amigo_arma2;
+    std::unique_ptr<Arma> amigo_arma1 = elegir_arma(opcion, is_guerrero); 
+    std::unique_ptr<Arma> amigo_arma2;
     Limpiar_terminal();
     while(true){
         std::cout << "====================================================" << std::endl;
@@ -58,8 +58,8 @@ int main(){
     }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Imprimir todo sobre el amigo
-    std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> amigo_par = {amigo_arma1, amigo_arma2};
-    std::shared_ptr<Personaje> amigo = PersonajeFactory::crearPersonajeArmado(opcion, amigo_par);
+    std::pair<std::unique_ptr<Arma>, std::unique_ptr<Arma>> amigo_par = {std::move(amigo_arma1), std::move(amigo_arma2)};
+    std::shared_ptr<Personaje> amigo = PersonajeFactory::crearPersonajeArmado(opcion, {std::move(amigo_par.first), std::move(amigo_par.second)});
 
     if(amigo->get_tipo() == "Mago"){
         std::cout << "==================================" << std::endl;
@@ -94,8 +94,7 @@ int main(){
     Limpiar_terminal();
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Imprimir todo sobre el enemigo
-    std::shared_ptr<Arma> enemigo_arma1 = nullptr; std::shared_ptr<Arma> enemigo_arma2 = nullptr;
-    std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> enemigo_par = {enemigo_arma1, enemigo_arma2};
+    std::unique_ptr<Arma> enemigo_arma1 = nullptr; std::unique_ptr<Arma> enemigo_arma2 = nullptr;
     std::shared_ptr<Personaje> enemigo = nullptr;
     m = numero_aleatorio(1,2);
     if(m == 1){
@@ -104,8 +103,7 @@ int main(){
         std::cout << "==========================" << std::endl;
         enemigo_arma1 = random_arma();
         enemigo_arma2 = random_arma();
-        enemigo_par = {enemigo_arma1, enemigo_arma2};
-        enemigo = random_personaje_guerrero(enemigo_par);
+        enemigo = random_personaje_guerrero({std::move(enemigo_arma1), std::move(enemigo_arma2)});
         tipo_enemigo = enemigo->get_tipo();
     }
     else{
@@ -114,8 +112,10 @@ int main(){
         std::cout << "======================" << std::endl;
         enemigo_arma1 = random_arma();
         enemigo_arma2 = random_arma();
-        enemigo_par = {enemigo_arma1, enemigo_arma2};
-        enemigo = random_personaje_mago(enemigo_par);
+        if (enemigo_arma1->get_subtipo() == enemigo_arma2->get_subtipo()){
+            enemigo_arma2 = random_arma();
+        }
+        enemigo = random_personaje_mago({std::move(enemigo_arma1), std::move(enemigo_arma2)});
         tipo_enemigo = enemigo->get_tipo();
     }
 
@@ -223,6 +223,7 @@ int main(){
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Resultados de la ronda
         std::shared_ptr<Personaje> ganador = definir_ganador(amigo, enemigo, ataque_amigo, ataque_enemigo);
+
         if(ganador == nullptr){
             std::cout << "Ambos contrincantes han realizado el mismo ataque, ¡HAY EMPATE!. Siguiente ronda." << std::endl;
             continue;
@@ -331,7 +332,7 @@ int main(){
             std::cout << "El amigo ha ganado esta ronda!\n" << std::endl;
         }
         else{
-            std::shared_ptr<Arma> arma_enemiga = enemigo->get_armas().first;
+            auto arma_enemiga = enemigo->get_armas().first;
             int random = numero_aleatorio(1,2);
             if(random == 2) arma_enemiga = enemigo->get_armas().second;
             switch(ataque_enemigo){
@@ -435,6 +436,8 @@ int main(){
             std::cout << "El enemigo ha ganado esta ronda!\n" << std::endl;
         }
     }while(amigo->get_vida() >= 0 && enemigo->get_vida() >= 0);
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Fin del enfrentamiento
     std::cout << "============MARCADOR============" << std::endl;

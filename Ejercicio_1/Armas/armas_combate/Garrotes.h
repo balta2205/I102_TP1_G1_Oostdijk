@@ -8,7 +8,7 @@ private:
     const std::string subtipo = "Lanza"; // Subtipo de arma.
     
 public:
-    // Constructor
+    // Constructor.
     Garrote(int ataque, int velocidad, int durabilidad, int nivel, int peso, int alcance);
 
     // Getters para los atributos.

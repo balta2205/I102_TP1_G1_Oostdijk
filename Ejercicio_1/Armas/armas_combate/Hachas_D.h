@@ -8,7 +8,7 @@ private:
     const std::string subtipo = "Hacha doble"; // Subtipo de arma.
     
 public:
-    // Constructor
+    // Constructor.
     Hacha_doble(int ataque, int velocidad, int durabilidad, int nivel, int peso, int alcance);
 
     // Getters para los atributos.

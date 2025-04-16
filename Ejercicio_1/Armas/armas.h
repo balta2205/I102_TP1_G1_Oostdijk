@@ -5,7 +5,7 @@
 
 class Arma {
 public:
-    // Destructor
+    // Destructor.
     virtual ~Arma() = default;
 
     // Getters para los atributos.

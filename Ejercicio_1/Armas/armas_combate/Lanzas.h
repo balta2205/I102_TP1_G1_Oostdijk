@@ -8,7 +8,7 @@ private:
     const std::string subtipo = "Lanza"; // Subtipo de arma.
     
 public:
-    // Constructor
+    // Constructor.
     Lanza(int ataque, int velocidad, int durabilidad, int nivel, int peso, int alcance);
 
     // Getters para los atributos.
@@ -21,4 +21,5 @@ public:
     void ataque_primario() override;
     void ataque_secundario() override;
 };
+
 #endif

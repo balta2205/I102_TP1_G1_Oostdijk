@@ -9,7 +9,7 @@ private:
     const std::string arma_especial = "Pocion"; // Arma especial del Brujo, siempre es Pocion, haria mas daño con este arma.
 public:
     // Constructor
-    Brujo(int vida, int defensa_fisica, int defensa_magica, int mana, int nivel, std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas);
+    Brujo(int vida, int defensa_fisica, int defensa_magica, int mana, int nivel, std::pair<std::unique_ptr<Arma>, std::unique_ptr<Arma>> armas);
 
     // Getters para los atributos.
     const std::string get_subtipo() override;

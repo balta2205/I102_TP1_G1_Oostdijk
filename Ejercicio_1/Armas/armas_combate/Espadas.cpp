@@ -12,4 +12,4 @@ int Espada::get_alcance() {return this->alcance;}
 
 // Ataques.
 void Espada::ataque_primario() {std::cout << "Ataca con la espada" << std::endl;}
-void Espada::ataque_secundario() {std::cout << "Golpe cargado con la espada." << std::endl;}
+void Espada::ataque_secundario() {std::cout << "Golpe cargado con la espada." << std::endl;} 

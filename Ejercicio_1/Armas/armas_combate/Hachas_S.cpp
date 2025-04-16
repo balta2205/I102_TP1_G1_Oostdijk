@@ -1,6 +1,6 @@
 #include "Hachas_S.h"
 
-// Constructor de la clase Hacha_simple
+// Constructor de la clase Hacha_simple.
 Hacha_simple::Hacha_simple(int ataque, int velocidad, int durabilidad, int nivel, int peso, int alcance) :
     Armas_comb(ataque, durabilidad, nivel, velocidad, peso, alcance) {}
 

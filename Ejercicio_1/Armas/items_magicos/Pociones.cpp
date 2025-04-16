@@ -1,5 +1,5 @@
 #include "Pociones.h"
-
+ 
 // Constructor.
 Pociones::Pociones(int ataque, int energia, int durabilidad, int nivel, int duracion) :
     Item_mag(ataque, durabilidad, nivel, energia, duracion){} 

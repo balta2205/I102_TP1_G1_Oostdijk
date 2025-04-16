@@ -12,11 +12,11 @@ protected:
     int nivel;
     int mana; // Atributo exclusivo de los magos.
 
-    // Armas del mago, se guardan como un par de shared_ptr.
-    std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas;
+    // Armas del mago, se guardan como un par de unique_ptr.
+    std::pair<std::unique_ptr<Arma>, std::unique_ptr<Arma>> armas;
 
 public:
-    Magos(int vida, int defensa_fisica, int defensa_magica, int nivel, int mana, std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas);
+    Magos(int vida, int defensa_fisica, int defensa_magica, int nivel, int mana, std::pair<std::unique_ptr<Arma>, std::unique_ptr<Arma>> armas);
     virtual ~Magos() = default; 
 
     // Getters para los atributos.
@@ -26,7 +26,7 @@ public:
     int get_defensa_magica() override;
     int get_nivel() override;
     int get_mana();
-    std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> get_armas() override;
+    std::pair<Arma*, Arma*> get_armas() override;
 
     // Setters para los atributos.
     void set_vida(int vida) override;

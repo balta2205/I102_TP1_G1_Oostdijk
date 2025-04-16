@@ -3,7 +3,7 @@
 // Constructor de la clase Hacha_doble.
 Hacha_doble::Hacha_doble(int ataque, int velocidad, int durabilidad, int nivel, int peso, int alcance) :
     Armas_comb(ataque, durabilidad, nivel, velocidad, peso, alcance) {}
-
+ 
 // Getters de los atributos.
 const std::string Hacha_doble::get_subtipo() {return this->subtipo;}
 int Hacha_doble::get_velocidad() {return this->velocidad;}

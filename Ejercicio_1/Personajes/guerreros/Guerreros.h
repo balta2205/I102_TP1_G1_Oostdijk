@@ -12,11 +12,11 @@ protected:
     int nivel;
     int stamina; // Atributo exclusivo de los guerreros.
 
-    // Armas del guerrero, se guardan como un par de shared_ptr.
-    std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas;
+    // Armas del guerrero, se guardan como un par de unique_ptr.
+    std::pair<std::unique_ptr<Arma>, std::unique_ptr<Arma>> armas;
 
 public:
-    Guerreros(int vida, int defensa_fisica, int defensa_magica, int nivel, int stamina, std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas);
+    Guerreros(int vida, int defensa_fisica, int defensa_magica, int nivel, int stamina, std::pair<std::unique_ptr<Arma>, std::unique_ptr<Arma>> armas);
     virtual ~Guerreros() = default;
 
     // Getters para los atributos.
@@ -26,7 +26,7 @@ public:
     int get_defensa_magica() override;
     int get_nivel() override;
     int get_stamina();
-    std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> get_armas() override;
+    std::pair<Arma*, Arma*> get_armas() override;
 
     // Setters para los atributos.
     void set_vida(int vida) override;

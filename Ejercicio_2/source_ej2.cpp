@@ -4,7 +4,7 @@ int numero_aleatorio(int min, int max) {
     return (rand() % (max - min + 1)) + min;
 }
 
-std::shared_ptr<Arma> random_arma(){
+std::unique_ptr<Arma> random_arma(){
     int tipo_arma = numero_aleatorio(0, 8);
     switch (tipo_arma) {
         case 0: return PersonajeFactory::crearArma(Armas_lista::BASTON);
@@ -20,25 +20,25 @@ std::shared_ptr<Arma> random_arma(){
     }
 }
 
-std::shared_ptr<Personaje> random_personaje_mago(std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas) {
+std::shared_ptr<Personaje> random_personaje_mago(std::pair<std::unique_ptr<Arma>, std::unique_ptr<Arma>> armas) {
     int tipo_mago = numero_aleatorio(0, 3);
     switch (tipo_mago) {
-        case 0: return PersonajeFactory::crearPersonajeArmado(Personas::HECHICERO, armas);
-        case 1: return PersonajeFactory::crearPersonajeArmado(Personas::CONJURADOR, armas);
-        case 2: return PersonajeFactory::crearPersonajeArmado(Personas::BRUJO, armas);
-        case 3: return PersonajeFactory::crearPersonajeArmado(Personas::NIGROMANTE, armas);
+        case 0: return PersonajeFactory::crearPersonajeArmado(Personas::HECHICERO, std::make_pair(std::move(armas.first), std::move(armas.second)));
+        case 1: return PersonajeFactory::crearPersonajeArmado(Personas::CONJURADOR, std::make_pair(std::move(armas.first), std::move(armas.second)));
+        case 2: return PersonajeFactory::crearPersonajeArmado(Personas::BRUJO, std::make_pair(std::move(armas.first), std::move(armas.second)));
+        case 3: return PersonajeFactory::crearPersonajeArmado(Personas::NIGROMANTE, std::make_pair(std::move(armas.first), std::move(armas.second)));
         default: return nullptr;
     }
 }
 
-std::shared_ptr<Personaje> random_personaje_guerrero(std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas) {
+std::shared_ptr<Personaje> random_personaje_guerrero(std::pair<std::unique_ptr<Arma>, std::unique_ptr<Arma>> armas) {
     int tipo_guerrero = numero_aleatorio(0, 4);
     switch (tipo_guerrero) {
-        case 0: return PersonajeFactory::crearPersonajeArmado(Personas::BARBARO, armas);
-        case 1: return PersonajeFactory::crearPersonajeArmado(Personas::PALADIN, armas);
-        case 2: return PersonajeFactory::crearPersonajeArmado(Personas::CABALLERO, armas);
-        case 3: return PersonajeFactory::crearPersonajeArmado(Personas::MERCENARIO, armas);
-        case 4: return PersonajeFactory::crearPersonajeArmado(Personas::GLADIADOR, armas);
+        case 0: return PersonajeFactory::crearPersonajeArmado(Personas::BARBARO, std::make_pair(std::move(armas.first), std::move(armas.second)));
+        case 1: return PersonajeFactory::crearPersonajeArmado(Personas::PALADIN, std::make_pair(std::move(armas.first), std::move(armas.second)));
+        case 2: return PersonajeFactory::crearPersonajeArmado(Personas::CABALLERO, std::make_pair(std::move(armas.first), std::move(armas.second)));
+        case 3: return PersonajeFactory::crearPersonajeArmado(Personas::MERCENARIO, std::make_pair(std::move(armas.first), std::move(armas.second)));
+        case 4: return PersonajeFactory::crearPersonajeArmado(Personas::GLADIADOR, std::make_pair(std::move(armas.first), std::move(armas.second)));
         default: return nullptr;
     }
 }
@@ -46,22 +46,20 @@ std::shared_ptr<Personaje> random_personaje_guerrero(std::pair<std::shared_ptr<A
 void crear_personajes(std::vector<std::shared_ptr<Personaje>>& guerreros, int cant_guerreros, std::vector<std::shared_ptr<Personaje>>& magos, int cant_magos) {
     for (int i = 0; i < cant_guerreros; ++i) {
         int cant_armas = numero_aleatorio(0, 2);
-        std::shared_ptr<Arma> arma1 = (cant_armas > 0) ? random_arma() : nullptr;
-        std::shared_ptr<Arma> arma2 = (cant_armas > 1) ? random_arma() : nullptr;
+        std::unique_ptr<Arma> arma1 = (cant_armas > 0) ? random_arma() : nullptr;
+        std::unique_ptr<Arma> arma2 = (cant_armas > 1) ? random_arma() : nullptr;
 
-        std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas = std::make_pair(arma1, arma2);
-        std::shared_ptr<Personaje> guerrero = random_personaje_guerrero(armas);
-        if(guerrero) guerreros.push_back(guerrero);
+        std::shared_ptr<Personaje> guerrero = random_personaje_guerrero(std::make_pair(std::move(arma1), std::move(arma2)));
+        if(guerrero) guerreros.push_back(std::move(guerrero));
     }
 
     for (int i = 0; i < cant_magos; ++i) {
         int cant_armas = numero_aleatorio(0, 2);
-        std::shared_ptr<Arma> arma1 = (cant_armas > 0) ? random_arma() : nullptr;
-        std::shared_ptr<Arma> arma2 = (cant_armas > 1) ? random_arma() : nullptr;
+        std::unique_ptr<Arma> arma1 = (cant_armas > 0) ? random_arma() : nullptr;
+        std::unique_ptr<Arma> arma2 = (cant_armas > 1) ? random_arma() : nullptr;
         
-        std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas = std::make_pair(arma1, arma2);
-        std::shared_ptr<Personaje> mago = random_personaje_mago(armas);
-        if(mago) magos.push_back(mago);
+        std::shared_ptr<Personaje> mago = random_personaje_mago(std::make_pair(std::move(arma1), std::move(arma2)));
+        if(mago) magos.push_back(std::move(mago));
     }
 };
 

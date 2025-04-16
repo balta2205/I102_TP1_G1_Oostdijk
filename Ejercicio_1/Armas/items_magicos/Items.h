@@ -24,4 +24,5 @@ public:
     virtual int get_energia() = 0; // Solo las armas tipo item magico tendran este atributo.
     virtual int get_duracion() = 0; // Solo las armas tipo item magico tendran este atributo.
 };
+
 #endif

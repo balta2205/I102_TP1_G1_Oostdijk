@@ -1,8 +1,8 @@
 #include "Magos.h"
 
 // Constructor de la clase Magos.
-Magos::Magos(int vida, int defensa_fisica, int defensa_magica, int nivel, int mana, std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> armas):
-        vida(vida), defensa_fisica(defensa_fisica), defensa_magica(defensa_magica), nivel(nivel), mana(mana), armas(armas) {}
+Magos::Magos(int vida, int defensa_fisica, int defensa_magica, int nivel, int mana, std::pair<std::unique_ptr<Arma>, std::unique_ptr<Arma>> armas):
+        vida(vida), defensa_fisica(defensa_fisica), defensa_magica(defensa_magica), nivel(nivel), mana(mana), armas(std::move(armas)) {}
 
 // Getters para los atributos.
 const std::string Magos::get_tipo() {return this->tipo;}
@@ -11,7 +11,7 @@ int Magos::get_defensa_fisica() {return this->defensa_fisica;}
 int Magos::get_defensa_magica() {return this->defensa_magica;}
 int Magos::get_nivel() {return this->nivel;}
 int Magos::get_mana() {return this->mana;}
-std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> Magos::get_armas() {return this->armas;}
+std::pair<Arma*, Arma*> Magos::get_armas() {return { armas.first.get(), armas.second.get() };}
 
 // Setters para los atributos.
 void Magos::set_vida(int vida) {this->vida = vida;}

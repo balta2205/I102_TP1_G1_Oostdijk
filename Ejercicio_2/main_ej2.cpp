@@ -16,5 +16,4 @@ int main(){
     crear_personajes(guerreros, cant_guerreros, magos, cant_magos);
 
     imprimir_personajes(guerreros, magos);
-
 }

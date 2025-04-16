@@ -8,7 +8,7 @@ private:
     const std::string subtipo = "Espada"; // Subtipo de arma.
     
 public:
-    // Constructor
+    // Constructor.
     Espada(int ataque, int velocidad, int durabilidad, int nivel, int peso, int alcance);
 
     // Getters para los atributos.

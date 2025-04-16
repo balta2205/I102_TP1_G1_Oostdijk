@@ -13,3 +13,4 @@ std::vector<std::string> Baston::get_materiales() {return this->materiales;}
 // Ataques.
 void Baston::ataque_primario() {std::cout << "El bastón lanza un rayo arcano." << std::endl;}
 void Baston::ataque_secundario() {std::cout << "El bastón genera una barrera mágica." << std::endl;}
+ 

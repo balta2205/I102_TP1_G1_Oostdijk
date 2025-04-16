@@ -1,6 +1,6 @@
 #include "Lanzas.h"
 
-// Constructor de la clase Lanza
+// Constructor de la clase Lanza.
 Lanza::Lanza(int ataque, int velocidad, int durabilidad, int nivel, int peso, int alcance) :
     Armas_comb(ataque, durabilidad, nivel, velocidad, peso, alcance) {}
 

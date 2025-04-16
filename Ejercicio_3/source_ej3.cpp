@@ -440,7 +440,7 @@ void mostrar_estadisticas_armas(Armas_lista opcion){
     }
 }
 
-std::shared_ptr<Arma> elegir_arma(Personas personaje, bool is_guerrero){
+std::unique_ptr<Arma> elegir_arma(Personas personaje, bool is_guerrero){
     std::shared_ptr<Personaje> pj = PersonajeFactory::crearPersonaje(personaje);
     Armas_lista arma_tipo;
     while(true){

@@ -22,4 +22,5 @@ public:
     void ataque_primario() override;
     void ataque_secundario() override;
 };
+
 #endif

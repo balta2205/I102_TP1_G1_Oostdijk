@@ -17,7 +17,7 @@ public:
     virtual int get_defensa_magica() = 0;
     virtual int get_nivel() = 0;
 
-    virtual std::pair<std::shared_ptr<Arma>, std::shared_ptr<Arma>> get_armas() = 0; // Devuelve un par de armas (arma principal y arma secundaria)
+    virtual std::pair<Arma*, Arma*> get_armas() = 0; // Devuelve un par de armas (arma principal y arma secundaria)
     virtual const std::string get_arma_especial() = 0; // Devuelve el nombre del arma especial, haria mas daño y es especifico a cada subtipo.
     
     // Setters para los atributos.
