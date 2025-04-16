@@ -9,6 +9,7 @@ int main(){
     
     // Inicio de simulacion, se elige personaje.
     while(true){ 
+        is_guerrero = true;
         Limpiar_terminal();
 
         if(opcion_invalida) {
@@ -26,15 +27,15 @@ int main(){
         std::cin >> n;
         if(n == 10) {std::cout << "Gracias por jugar!" << std::endl; return 0;}
         if(n > 1 && n < 5) is_guerrero = false;
-        opcion = static_cast<Personas>(n);
         if(n < 1 || n > 10) {opcion_invalida = true; continue;}
+        opcion = static_cast<Personas>(n);
 
         Limpiar_terminal();
         mostrar_estadisticas_personajes(opcion);
         std::cout << "============================================================================" << std::endl;
         std::cout << "Quiere quedarse con este personaje? [1]. Si, salir. [2]. No, volver al menu." << std::endl;
         std::cin >> m;
-        if(m == 1) {Limpiar_terminal(); break;} 
+        if(m == 1) {break;} 
         else {n = 0; opcion_invalida = false; continue;}
     }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,7 +60,7 @@ int main(){
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Imprimir todo sobre el amigo
     std::pair<std::unique_ptr<Arma>, std::unique_ptr<Arma>> amigo_par = {std::move(amigo_arma1), std::move(amigo_arma2)};
-    std::shared_ptr<Personaje> amigo = PersonajeFactory::crearPersonajeArmado(opcion, {std::move(amigo_par.first), std::move(amigo_par.second)});
+    std::unique_ptr<Personaje> amigo = PersonajeFactory::crearPersonajeArmado(opcion, {std::move(amigo_par.first), std::move(amigo_par.second)});
 
     if(amigo->get_tipo() == "Mago"){
         std::cout << "==================================" << std::endl;
@@ -95,7 +96,7 @@ int main(){
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Imprimir todo sobre el enemigo
     std::unique_ptr<Arma> enemigo_arma1 = nullptr; std::unique_ptr<Arma> enemigo_arma2 = nullptr;
-    std::shared_ptr<Personaje> enemigo = nullptr;
+    std::unique_ptr<Personaje> enemigo = nullptr;
     m = numero_aleatorio(1,2);
     if(m == 1){
         std::cout << "==========================" << std::endl;
@@ -140,7 +141,7 @@ int main(){
         if(enemigo->get_armas().first->get_tipo() == "Armas de Combate") std::cout << " (+10% de daño)";
         if(enemigo->get_arma_especial() == enemigo->get_armas().first->get_subtipo()) std::cout << " (+5% de daño)";
         else std::cout << std::endl;
-        std::cout << "\tArma 2: " << enemigo->get_armas().second->get_subtipo();
+        std::cout << "\n\tArma 2: " << enemigo->get_armas().second->get_subtipo();
         if(enemigo->get_armas().second->get_tipo() == "Armas de Combate") std::cout << " (+10% de daño)";
         if(enemigo->get_arma_especial() == enemigo->get_armas().second->get_subtipo()) std::cout << " (+5% de daño)" << std::endl;
     } 
@@ -222,13 +223,13 @@ int main(){
         std::cout << "===================================================================================\n" << std::endl;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Resultados de la ronda
-        std::shared_ptr<Personaje> ganador = definir_ganador(amigo, enemigo, ataque_amigo, ataque_enemigo);
+        Ataques ganador = definir_ganador(ataque_amigo, ataque_enemigo);        
 
-        if(ganador == nullptr){
+        if(ganador == static_cast<Ataques>(0)){
             std::cout << "Ambos contrincantes han realizado el mismo ataque, ¡HAY EMPATE!. Siguiente ronda." << std::endl;
             continue;
         }
-        else if(ganador == amigo){
+        else if(ganador == ataque_amigo){
             switch(ataque_amigo){
                 case Ataques::GOLPE_FUERTE :{
                     std::cout << "¡¡El amigo ha realizado un Golpe Fuerte con " << amigo->get_armas().first->get_subtipo() << " mientras que el enemigo ha realizado un Golpe Rapido!!" << std::endl;

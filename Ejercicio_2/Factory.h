@@ -40,22 +40,8 @@
 class PersonajeFactory {
 public:
     static std::unique_ptr<Arma> crearArma(Armas_lista arma);
-    static std::shared_ptr<Personaje> crearPersonaje(Personas personaje);
-    static std::shared_ptr<Personaje> crearPersonajeArmado(Personas personaje, std::pair<std::unique_ptr<Arma>, std::unique_ptr<Arma>> armas);
+    static std::unique_ptr<Personaje> crearPersonaje(Personas personaje);
+    static std::unique_ptr<Personaje> crearPersonajeArmado(Personas personaje, std::pair<std::unique_ptr<Arma>, std::unique_ptr<Arma>> armas);
 };
-
-// Declaraciones de funciones del main.cpp
-int numero_aleatorio(int min, int max);
-
-/* Hay dos funciones para crear armas, una para magos y otra para guerreros, porque se considera que las armas de combate 
-son especificos de los guerreros y los items magicos son especificos de los magos.*/
-std::unique_ptr<Arma> random_arma();
-
-/* Hay dos funciones para crear personajes para poder aleatorizar que tipo de guerreros y magos crear.*/
-std::shared_ptr<Personaje> random_personaje_mago(std::pair<std::unique_ptr<Arma>, std::unique_ptr<Arma>> armas);
-std::shared_ptr<Personaje> random_personaje_guerrero(std::pair<std::unique_ptr<Arma>, std::unique_ptr<Arma>> armas);
-void crear_personajes(std::vector<std::shared_ptr<Personaje>>& guerreros, int cant_guerreros, std::vector<std::shared_ptr<Personaje>>& magos, int cant_magos);
-void mostrar_personaje(const std::shared_ptr<Personaje>& personaje);
-void imprimir_personajes(const std::vector<std::shared_ptr<Personaje>>& guerreros, const std::vector<std::shared_ptr<Personaje>>& magos);
 
 #endif

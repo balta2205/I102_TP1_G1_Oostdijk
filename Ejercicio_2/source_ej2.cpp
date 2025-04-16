@@ -20,7 +20,7 @@ std::unique_ptr<Arma> random_arma(){
     }
 }
 
-std::shared_ptr<Personaje> random_personaje_mago(std::pair<std::unique_ptr<Arma>, std::unique_ptr<Arma>> armas) {
+std::unique_ptr<Personaje> random_personaje_mago(std::pair<std::unique_ptr<Arma>, std::unique_ptr<Arma>> armas) {
     int tipo_mago = numero_aleatorio(0, 3);
     switch (tipo_mago) {
         case 0: return PersonajeFactory::crearPersonajeArmado(Personas::HECHICERO, std::make_pair(std::move(armas.first), std::move(armas.second)));
@@ -31,7 +31,7 @@ std::shared_ptr<Personaje> random_personaje_mago(std::pair<std::unique_ptr<Arma>
     }
 }
 
-std::shared_ptr<Personaje> random_personaje_guerrero(std::pair<std::unique_ptr<Arma>, std::unique_ptr<Arma>> armas) {
+std::unique_ptr<Personaje> random_personaje_guerrero(std::pair<std::unique_ptr<Arma>, std::unique_ptr<Arma>> armas) {
     int tipo_guerrero = numero_aleatorio(0, 4);
     switch (tipo_guerrero) {
         case 0: return PersonajeFactory::crearPersonajeArmado(Personas::BARBARO, std::make_pair(std::move(armas.first), std::move(armas.second)));
@@ -43,13 +43,13 @@ std::shared_ptr<Personaje> random_personaje_guerrero(std::pair<std::unique_ptr<A
     }
 }
 
-void crear_personajes(std::vector<std::shared_ptr<Personaje>>& guerreros, int cant_guerreros, std::vector<std::shared_ptr<Personaje>>& magos, int cant_magos) {
+void crear_personajes(std::vector<std::unique_ptr<Personaje>>& guerreros, int cant_guerreros, std::vector<std::unique_ptr<Personaje>>& magos, int cant_magos) {
     for (int i = 0; i < cant_guerreros; ++i) {
         int cant_armas = numero_aleatorio(0, 2);
         std::unique_ptr<Arma> arma1 = (cant_armas > 0) ? random_arma() : nullptr;
         std::unique_ptr<Arma> arma2 = (cant_armas > 1) ? random_arma() : nullptr;
 
-        std::shared_ptr<Personaje> guerrero = random_personaje_guerrero(std::make_pair(std::move(arma1), std::move(arma2)));
+        std::unique_ptr<Personaje> guerrero = random_personaje_guerrero(std::make_pair(std::move(arma1), std::move(arma2)));
         if(guerrero) guerreros.push_back(std::move(guerrero));
     }
 
@@ -58,12 +58,12 @@ void crear_personajes(std::vector<std::shared_ptr<Personaje>>& guerreros, int ca
         std::unique_ptr<Arma> arma1 = (cant_armas > 0) ? random_arma() : nullptr;
         std::unique_ptr<Arma> arma2 = (cant_armas > 1) ? random_arma() : nullptr;
         
-        std::shared_ptr<Personaje> mago = random_personaje_mago(std::make_pair(std::move(arma1), std::move(arma2)));
+        std::unique_ptr<Personaje> mago = random_personaje_mago(std::make_pair(std::move(arma1), std::move(arma2)));
         if(mago) magos.push_back(std::move(mago));
     }
 };
 
-void mostrar_personaje(const std::shared_ptr<Personaje>& personaje){
+void mostrar_personaje(const std::unique_ptr<Personaje>& personaje){
     if (!personaje) {std::cout << "nullptr" << std::endl; return;}
 
     std::cout << personaje->get_tipo() << ": " << personaje->get_subtipo() << std::endl;
@@ -77,23 +77,47 @@ void mostrar_personaje(const std::shared_ptr<Personaje>& personaje){
     std::cout << "       Arma 1: ";
     if (armas.first) {
         std::cout << armas.first->get_subtipo() << std::endl;
-        std::cout << "\t   Daño: " << armas.first->get_ataque() << std::endl;
-        std::cout << "\t   Durabilidad: " << armas.first->get_durabilidad() << std::endl;
+        std::cout << "\t    Ataque: " << armas.first->get_ataque() << std::endl;
+        std::cout << "\t    Durabilidad: " << armas.first->get_durabilidad() << std::endl;
+        std::cout << "\t    Nivel: " << armas.first->get_nivel() << std::endl;
+        if(armas.first->get_tipo() == "Item Magico") {
+            auto aux = dynamic_cast<Item_mag*>(armas.first);
+            std::cout << "\t    Energia: " << aux->get_energia() << std::endl;
+            std::cout << "\t    Duracion: " << aux->get_duracion() << std::endl;
+        }
+        else{
+            auto aux = dynamic_cast<Armas_comb*>(armas.first);
+            std::cout << "\t    Velocidad: " << aux->get_velocidad() << std::endl;
+            std::cout << "\t    Peso: " << aux->get_peso() << std::endl;
+            std::cout << "\t    Alcance: " << aux->get_alcance() << std::endl;
+        }
     } 
     else {std::cout << "No hay" << std::endl;}
     
     std::cout << "\n       Arma 2: ";
     if (armas.second) {
         std::cout << armas.second->get_subtipo() << std::endl;
-        std::cout << "\t   Daño: " << armas.second->get_ataque() << std::endl;
-        std::cout << "\t   Durabilidad: " << armas.second->get_durabilidad() << std::endl;
+        std::cout << "\t    Ataque: " << armas.second->get_ataque() << std::endl;
+        std::cout << "\t    Durabilidad: " << armas.second->get_durabilidad() << std::endl;
+        std::cout << "\t    Nivel: " << armas.second->get_nivel() << std::endl;
+        if(armas.second->get_tipo() == "Item Magico") {
+            auto aux = dynamic_cast<Item_mag*>(armas.second);
+            std::cout << "\t    Energia: " << aux->get_energia() << std::endl;
+            std::cout << "\t    Duracion: " << aux->get_duracion() << std::endl;
+        }
+        else{
+            auto aux = dynamic_cast<Armas_comb*>(armas.second);
+            std::cout << "\t    Velocidad: " << aux->get_velocidad() << std::endl;
+            std::cout << "\t    Peso: " << aux->get_peso() << std::endl;
+            std::cout << "\t    Alcance: " << aux->get_alcance() << std::endl;
+        }
     } 
     else {std::cout << "No hay" << std::endl;}
 
     std::cout << "---------------------------------------------" << std::endl;
 }
 
-void imprimir_personajes(const std::vector<std::shared_ptr<Personaje>>& guerreros, const std::vector<std::shared_ptr<Personaje>>& magos) {
+void imprimir_personajes(const std::vector<std::unique_ptr<Personaje>>& guerreros, const std::vector<std::unique_ptr<Personaje>>& magos) {
     for (const auto& guerrero : guerreros) {mostrar_personaje(guerrero);}
     for (const auto& mago : magos) {mostrar_personaje(mago);}
 }

@@ -15,14 +15,14 @@ Ataques random_ataque_enemigo(){
     return static_cast<Ataques>(numero_aleatorio(1, 3));
 }
 
-std::shared_ptr<Personaje> definir_ganador(std::shared_ptr<Personaje> amigo, std::shared_ptr<Personaje> enemigo, Ataques ataque_amigo, Ataques ataque_enemigo){
-    if(ataque_amigo == Ataques::DEFENSA_GOLPE && ataque_enemigo == Ataques::DEFENSA_GOLPE) {return nullptr;}
-    else if(ataque_amigo == Ataques::DEFENSA_GOLPE && ataque_enemigo == Ataques::GOLPE_RAPIDO) {return nullptr;}
-    else if(ataque_amigo == Ataques::GOLPE_RAPIDO && ataque_enemigo == Ataques::GOLPE_FUERTE) {return nullptr;}
-    else if(ataque_amigo == Ataques::GOLPE_FUERTE && ataque_enemigo == Ataques::GOLPE_RAPIDO) {return amigo;}
-    else if(ataque_amigo == Ataques::GOLPE_RAPIDO && ataque_enemigo == Ataques::DEFENSA_GOLPE) {return amigo;}
-    else if(ataque_amigo == Ataques::DEFENSA_GOLPE && ataque_enemigo == Ataques::GOLPE_FUERTE) {return amigo;}
-    else{return enemigo;}
+Ataques definir_ganador(Ataques ataque_amigo, Ataques ataque_enemigo){
+    if(ataque_amigo == Ataques::DEFENSA_GOLPE && ataque_enemigo == Ataques::DEFENSA_GOLPE) {return static_cast<Ataques>(0);}
+    else if(ataque_amigo == Ataques::DEFENSA_GOLPE && ataque_enemigo == Ataques::GOLPE_RAPIDO) {return static_cast<Ataques>(0);}
+    else if(ataque_amigo == Ataques::GOLPE_RAPIDO && ataque_enemigo == Ataques::GOLPE_FUERTE) {return static_cast<Ataques>(0);}
+    else if(ataque_amigo == Ataques::GOLPE_FUERTE && ataque_enemigo == Ataques::GOLPE_RAPIDO) {return ataque_amigo;}
+    else if(ataque_amigo == Ataques::GOLPE_RAPIDO && ataque_enemigo == Ataques::DEFENSA_GOLPE) {return ataque_amigo;}
+    else if(ataque_amigo == Ataques::DEFENSA_GOLPE && ataque_enemigo == Ataques::GOLPE_FUERTE) {return ataque_amigo;}
+    else{return ataque_enemigo;}
 }
 
 Personas string_a_persona(const std::string& str) {
@@ -192,10 +192,10 @@ void mostrar_estadisticas_personajes(Personas opcion){
     }
 }
 
-void mostrar_estadisticas_personajes(Personas opcion, std::shared_ptr<Personaje> clase){
+void mostrar_estadisticas_personajes(Personas opcion, std::unique_ptr<Personaje>& clase){
     switch(opcion){
         case Personas::HECHICERO :{
-            auto subclase = std::dynamic_pointer_cast<Hechicero>(clase);
+            auto subclase = dynamic_cast<Hechicero*>(clase.get());
             std::cout << "==================" << std::endl;
             std::cout << "Subtipo: " << subclase->get_subtipo() << std::endl;
             std::cout << "==================" << std::endl;
@@ -208,7 +208,7 @@ void mostrar_estadisticas_personajes(Personas opcion, std::shared_ptr<Personaje>
             std::cout << "    Arma Especial: " << subclase->get_arma_especial() << std::endl;
             break;}
         case Personas::CONJURADOR :{
-            auto subclase = std::dynamic_pointer_cast<Conjurador>(clase);
+            auto subclase = dynamic_cast<Conjurador*>(clase.get());
             std::cout << "===================" << std::endl;
             std::cout << "Subtipo: " << subclase->get_subtipo() << std::endl;
             std::cout << "=============================" << std::endl;
@@ -222,7 +222,7 @@ void mostrar_estadisticas_personajes(Personas opcion, std::shared_ptr<Personaje>
             break;}
         case Personas::BRUJO :{
             std::cout << "==============" << std::endl;
-            auto subclase = std::dynamic_pointer_cast<Brujo>(clase);
+            auto subclase = dynamic_cast<Brujo*>(clase.get());
             std::cout << "==============" << std::endl;
             std::cout << "Subtipo: " << subclase->get_subtipo() << std::endl;
             std::cout << "Estadisticas: " << std::endl;
@@ -234,7 +234,7 @@ void mostrar_estadisticas_personajes(Personas opcion, std::shared_ptr<Personaje>
             std::cout << "    Arma Especial: " << subclase->get_arma_especial() << std::endl;
             break;}
         case Personas::NIGROMANTE :{
-            auto subclase = std::dynamic_pointer_cast<Nigromante>(clase);
+            auto subclase = dynamic_cast<Nigromante*>(clase.get());
             std::cout << "===================" << std::endl;
             std::cout << "Subtipo: " << subclase->get_subtipo() << std::endl;
             std::cout << "===================" << std::endl;
@@ -248,7 +248,7 @@ void mostrar_estadisticas_personajes(Personas opcion, std::shared_ptr<Personaje>
             break;}
         case Personas::BARBARO :{
             std::cout << "================" << std::endl;
-            auto subclase = std::dynamic_pointer_cast<Barbaro>(clase);
+            auto subclase = dynamic_cast<Barbaro*>(clase.get());
             std::cout << "================" << std::endl;
             std::cout << "Subtipo: " << subclase->get_subtipo() << std::endl;
             std::cout << "Estadisticas: " << std::endl;
@@ -260,7 +260,7 @@ void mostrar_estadisticas_personajes(Personas opcion, std::shared_ptr<Personaje>
             std::cout << "    Arma Especial: " << subclase->get_arma_especial() << std::endl;
             break;}
         case Personas::PALADIN :{
-            auto subclase = std::dynamic_pointer_cast<Paladin>(clase);
+            auto subclase = dynamic_cast<Paladin*>(clase.get());
             std::cout << "================" << std::endl;
             std::cout << "Subtipo: " << subclase->get_subtipo() << std::endl;
             std::cout << "================" << std::endl;
@@ -273,7 +273,7 @@ void mostrar_estadisticas_personajes(Personas opcion, std::shared_ptr<Personaje>
             std::cout << "    Arma Especial: " << subclase->get_arma_especial() << std::endl;
             break;}
         case Personas::CABALLERO :{
-            auto subclase = std::dynamic_pointer_cast<Caballero>(clase);
+            auto subclase = dynamic_cast<Caballero*>(clase.get());
             std::cout << "==================" << std::endl;
             std::cout << "Subtipo: " << subclase->get_subtipo() << std::endl;
             std::cout << "==================" << std::endl;
@@ -286,7 +286,7 @@ void mostrar_estadisticas_personajes(Personas opcion, std::shared_ptr<Personaje>
             std::cout << "    Arma Especial: " << subclase->get_arma_especial() << std::endl;
             break;}
         case Personas::MERCENARIO :{
-            auto subclase = std::dynamic_pointer_cast<Mercenario>(clase);
+            auto subclase = dynamic_cast<Mercenario*>(clase.get());
             std::cout << "===================" << std::endl;
             std::cout << "Subtipo: " << subclase->get_subtipo() << std::endl;
             std::cout << "===================" << std::endl;
@@ -299,7 +299,7 @@ void mostrar_estadisticas_personajes(Personas opcion, std::shared_ptr<Personaje>
             std::cout << "    Arma Especial: " << subclase->get_arma_especial() << std::endl;
             break;}
         case Personas::GLADIADOR :{
-            auto subclase = std::dynamic_pointer_cast<Gladiador>(clase);
+            auto subclase = dynamic_cast<Gladiador*>(clase.get());
             std::cout << "==================" << std::endl;
             std::cout << "Subtipo: " << subclase->get_subtipo() << std::endl;
             std::cout << "==================" << std::endl;
@@ -441,11 +441,15 @@ void mostrar_estadisticas_armas(Armas_lista opcion){
 }
 
 std::unique_ptr<Arma> elegir_arma(Personas personaje, bool is_guerrero){
-    std::shared_ptr<Personaje> pj = PersonajeFactory::crearPersonaje(personaje);
+    std::unique_ptr<Personaje> pj = PersonajeFactory::crearPersonaje(personaje);
     Armas_lista arma_tipo;
     while(true){
         if (is_guerrero){
-            std::shared_ptr<Guerreros> guerrero = std::dynamic_pointer_cast<Guerreros>(pj);
+            auto guerrero = dynamic_cast<Guerreros*>(pj.get());
+            if (!guerrero) {
+                std::cout << "Error: No se pudo convertir a Guerrero." << std::endl;
+                continue;
+            }
             std::cout << "===========================================================================" << std::endl;
             std::cout << "Su personaje es tipo Guerrero: " << guerrero->get_subtipo() << ". \nHara un 10% mas daño con armas de tipo: Armas de Combate. \nAdemas el " 
                       << guerrero->get_subtipo() << " se especializa en armas de tipo: " << guerrero->get_arma_especial() 
@@ -479,7 +483,7 @@ std::unique_ptr<Arma> elegir_arma(Personas personaje, bool is_guerrero){
                 continue;}
         }
         else{
-            std::shared_ptr<Magos> mago = std::dynamic_pointer_cast<Magos>(pj);
+            auto mago = dynamic_cast<Magos*>(pj.get());
             std::cout << "===========================================================================" << std::endl;
             std::cout << "Su personaje es tipo Mago:" << mago->get_subtipo() << ". \nHara un 10% mas daño con armas de tipo: Armas de Combate. Ademas los : " 
                       << mago->get_subtipo() << " se especializan en armas de tipo: " << mago->get_arma_especial() 

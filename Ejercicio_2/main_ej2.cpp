@@ -3,12 +3,12 @@
 int main(){
     srand(time(0));
 
-    std::vector<std::shared_ptr<Personaje>> guerreros;
-    std::vector<std::shared_ptr<Personaje>> magos;   
+    std::vector<std::unique_ptr<Personaje>> guerreros;
+    std::vector<std::unique_ptr<Personaje>> magos;   
 
     int cant_guerreros = numero_aleatorio(3, 7);
     int cant_magos = numero_aleatorio(3, 7);
-
+    
     std::cout << "---------------------------------------------" << std::endl;
     std::cout << "Se crearon " << cant_guerreros << " guerreros y " << cant_magos << " magos." << std::endl;
     std::cout << "---------------------------------------------" << std::endl;
